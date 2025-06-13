@@ -70,7 +70,7 @@
             <div class="card-header" style="text-align:center;">
                 Registro de Usuario
             </div>
-            <form>
+            <form id="frm_user" action="" method="">
                 <div class="card-body">
 
                     <div class="mb-3 row">
@@ -143,7 +143,7 @@
                     </div>
 
                     <div style="display: flex; justify-content:center; gap:20px">
-                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                         <button type="reset" class="btn btn-info">Limpiar</button>
                         <button type="button" class="btn btn-danger">Cancelar</button>
 
@@ -152,8 +152,8 @@
             </form>
         </div>
     </div>
-
-    <script src="<?php echo BASE_URL; ?>view//bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    
+    <script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
+    <script src="<?php echo BASE_URL; ?>view/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
