@@ -13,7 +13,7 @@
         <p>PAGE NOT FOUND</p>
     </div>
 
-     <style>
+    <style>
         body{
             background-color:black;
             
