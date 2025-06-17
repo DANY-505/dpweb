@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fernandez</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <style>
+        .bi{
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -19,24 +31,31 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
+                            <i class="bi bi-house"></i>
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-person-square"></i>
                             <a class="nav-link" href="#">Users</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-box-seam"></i>
                             <a class="nav-link" href="#">Products</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-menu-button-wide-fill"></i>
                             <a class="nav-link" href="#">Categories</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-people"></i>
                             <a class="nav-link" href="#">Clients</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-shop"></i>
                             <a class="nav-link" href="#">Shops</a>
                         </li>
                         <li class="nav-item">
+                            <i class="bi bi-cart3"></i>
                             <a class="nav-link" href="#">Sales</a>
                         </li>
 
@@ -65,7 +84,7 @@
         </nav>
     </header>
 
-    <div class="container" style="margin-top: 200px;">
+    <div class="container" style="margin-top: 100px;">
         <div class="card">
             <div class="card-header" style="text-align:center;">
                 Registro de Usuario
@@ -143,7 +162,7 @@
                     </div>
 
                     <div style="display: flex; justify-content:center; gap:20px">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" onclick="alert()" class="btn btn-primary">Registrar</button>
                         <button type="reset" class="btn btn-info">Limpiar</button>
                         <button type="button" class="btn btn-danger">Cancelar</button>
 
