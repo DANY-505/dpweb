@@ -12,17 +12,16 @@ function validar_form() {
     let rol = document.getElementById("rol").value;
 
     if (nro_documento=="" || razon_social=="" || telefono=="" || correo=="" || correo=="" || departamento=="" || provincia=="" || distrito=="" || cod_postal=="" || direccion=="" || rol=="") {
-       function alert(){
-        swal("Cancelaste el formulario");
-        }
+       
+         Swal.fire({
+            icon: 'warning',
+            title: 'Campos vacíos',
+            text: 'Por favor, complete todos los campos requeridos',
+            confirmButtonText: 'Entendido'
+        });
+        return;
     }
-    function alert(){
-        swal("Cancelaste el formulario");
-    }
-
-    
-
- 
+    registrarUsuario();
 }
 
 if(document.querySelector('#frm_user')){
@@ -30,7 +29,23 @@ if(document.querySelector('#frm_user')){
     let frm_user = document.querySelector('#frm_user');
     frm_user.onsubmit = function(e){
         e.preventDefault();
-        validar_form
+        validar_form();
     }
 }
 
+async function registrarUsuario() {
+    try {
+        //capturar datos del formulario html
+        const datos = new FormData(frm_user);
+        //enviar datos al controlador
+        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=registrar',{
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos 
+        });
+        
+    } catch (error) {
+        console.log("errer al registar usuario:" + error); 
+    }
+}
