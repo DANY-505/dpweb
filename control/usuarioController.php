@@ -1,4 +1,7 @@
 <?php
+require_once("../model/UsuarioModel.php");
+
+$objpPersona = new UsuarioModel();
 
 $tipo = $_GET['tipo'];
 if ($tipo == "registrar") {
@@ -13,11 +16,25 @@ if ($tipo == "registrar") {
     $cod_postal = $_POST['cod_postal'];
     $direccion = $_POST['direccion'];
     $rol = $_POST['rol'];
+    // encriptando contraseña
+    $password = password_hash($nro_identidad, PASSWORD_DEFAULT);
 
-    if ($nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == ""  || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol =="") {
-        $arrResponse = array('status'=> false, 'msg'=> 'Error, campos vacios');
-    }else {
-        $arrResponse = array('status'=> true, 'msg'=> 'Procedemos a registrar');
+    if ($nro_identidad == "" || $razon_social == "" || $telefono == "" || $correo == "" || $departamento == ""  || $provincia == "" || $distrito == "" || $cod_postal == "" || $direccion == "" || $rol == "") {
+        $arrResponse = array('status' => false, 'msg' => 'Error, campos vacios');
+    } else {
+        //validacion si existe persona con el mismo dni
+        $existePersona = $objpPersona->existePersona($nro_identidad);
+        if ($existePersona > 0) {
+            $arrResponse = array('status' => false, 'msg' => 'Error, nro de documento ya existe');
+        } else {
+
+            $respuesta = $objpPersona->registrar($nro_identidad, $razon_social, $telefono, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $password);
+            if ($respuesta) {
+                $arrResponse = array('status' => true, 'msg' => 'Registrado corectamente');
+            } else {
+                $arrResponse = array('status' => false, 'msg' => 'Error, fallo en registro');
+            }
+        }
     }
     echo json_encode($arrResponse);
 }
