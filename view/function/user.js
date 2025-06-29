@@ -12,17 +12,15 @@ function validar_form() {
     let rol = document.getElementById("rol").value;
 
     if (nro_documento=="" || razon_social=="" || telefono=="" || correo=="" || correo=="" || departamento=="" || provincia=="" || distrito=="" || cod_postal=="" || direccion=="" || rol=="") {
-       function alert(){
-        swal("Cancelaste el formulario");
-        }
+        alert("Error: Existen Campos vacios");
+        return;
     }
-    function alert(){
-        swal("Cancelaste el formulario");
-    }
+    Swal.fire({
+        title: "Drag me!",
+        icon: "success",
+        draggable: true
+    });
 
-    
-
- 
 }
 
 if(document.querySelector('#frm_user')){

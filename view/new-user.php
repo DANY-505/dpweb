@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fernandez</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <style>
         .bi{
@@ -162,7 +162,7 @@
                     </div>
 
                     <div style="display: flex; justify-content:center; gap:20px">
-                        <button type="submit" onclick="alert()" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                         <button type="reset" class="btn btn-info">Limpiar</button>
                         <button type="button" class="btn btn-danger">Cancelar</button>
 
