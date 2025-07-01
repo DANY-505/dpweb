@@ -1,17 +1,13 @@
-
 function validar_form() {
-    let nro_documento = document.getElementById("nro_identidad").value;
-    let razon_social = document.getElementById("razon_social").value;
-    let telefono = document.getElementById("telefono").value;
-    let correo = document.getElementById("correo").value;
-    let departamento = document.getElementById("departamento").value;
-    let provincia = document.getElementById("provincia").value;
-    let distrito = document.getElementById("distrito").value;
-    let cod_postal = document.getElementById("cod_postal").value;
-    let direccion = document.getElementById("direccion").value;
-    let rol = document.getElementById("rol").value;
+    let codigo  = document.getElementById("codigo").value;
+    let nombre = document.getElementById("nombre").value;
+    let detalle = document.getElementById("detalle").value;
+    let precio = document.getElementById("precio").value;
+    let stock = document.getElementById("stock").value;
+    let fecha_vencimiento = document.getElementById("fecha_vencimiento").value;
+    
 
-    if (nro_documento=="" || razon_social=="" || telefono=="" || correo=="" || correo=="" || departamento=="" || provincia=="" || distrito=="" || cod_postal=="" || direccion=="" || rol=="") {
+    if (codigo=="" || nombre=="" || detalle=="" || precio=="" || stock=="" || fecha_vencimiento=="") {
        
          Swal.fire({
             icon: 'warning',
@@ -21,22 +17,22 @@ function validar_form() {
         });
         return;
     }
-    registrarUsuario();
+    registrarProducto();
 }
 
-if(document.querySelector('#frm_user')){
+if(document.querySelector('#frm_product')){
     //evita que se envie el formulario
-    let frm_user = document.querySelector('#frm_user');
-    frm_user.onsubmit = function(e){
+    let frm_product = document.querySelector('#frm_product');
+    frm_product.onsubmit = function(e){
         e.preventDefault();
         validar_form();
     }
 }
 
-async function registrarUsuario() {
+async function registrarProducto() {
     try {
-        const datos = new FormData(frm_user);
-        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=registrar', {
+        const datos = new FormData(frm_product);
+        let respuesta = await fetch(base_url + 'control/ProductsController.php?tipo=registrar', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -49,7 +45,7 @@ async function registrarUsuario() {
                 title: "Éxito",
                 text: json.msg
             });
-            document.getElementById('frm_user').reset();
+            document.getElementById('frm_product').reset();
         } else {
             Swal.fire({
                 icon: "error",

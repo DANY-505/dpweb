@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fernandez</title>
-
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
     <script>
         const base_url = '<?php echo BASE_URL;?>';
     </script>
-
     
     <style>
         .bi{
@@ -95,77 +90,21 @@
     <div class="container" style="margin-top: 100px;">
         <div class="card">
             <div class="card-header" style="text-align:center;">
-                Registro de Usuario
+                Registrar Categoria
             </div>
-            <form id="frm_user" action="" method="">
+            <form id="frm_categorie" action="" method="">
                 <div class="card-body">
 
                     <div class="mb-3 row">
-                        <label for="nro_identidad" class="col-sm-2 col-form-label">Nro de Documento</label>
+                        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="nro_identidad" name="nro_identidad" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="razon_social" class="col-sm-2 col-form-label">Nombre/Razon Social</label>
+                        <label for="detalle" class="col-sm-2 col-form-label">Detalle</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="razon_social" name="razon_social" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="telefono" name="telefono"required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="correo" class="col-sm-2 col-form-label">Correo</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control" id="correo" name="correo"required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="departamento" class="col-sm-2 col-form-label">Departamento</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="departamento" name="departamento"required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="provincia" class="col-sm-2 col-form-label">Provincia</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="provincia" name="provincia"required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="distrito" class="col-sm-2 col-form-label">Distrito</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="distrito" name="distrito"required>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="cod_postal" class="col-sm-2 col-form-label">Codigo Postal</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="cod_postal" name="cod_postal"required>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="direccion" name="direccion"required>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="rol" class="col-sm-2 col-form-label">Rol</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" aria-label="Default select example" id="rol" name="rol">
-                                <option value="" disabled selected>seleccione</option>
-                                <option value="admin">Administrador</option>
-                                <option value="user">Usuario</option>
-                                <option value="invit">Invitado</option>
-                            </select>
+                            <input type="text" class="form-control" id="detalle" name="detalle" required>
                         </div>
                     </div>
 
@@ -178,9 +117,12 @@
             </form>
         </div>
     </div>
+
     
+   
     <script src="<?php echo BASE_URL; ?>view/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>view/function/categoria.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
 </body>
 </html>
+    
