@@ -1,103 +1,124 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #d3d3d3;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .login-box {
-            position: relative;
-            width: 400px;
-            height: 450px;
-            background-image: url(img/mot.jpg);
-            background-size: 100% 100%;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h2 {
-            color: white;
-            text-align: center;
-            font-size: 2rem;
-            margin-top: 0;
-            margin-bottom: 50px;
-            text-shadow: 15px 15px 20px black;
-
-        }
-
-        .label {
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .input-box {
-            position: relative;
-            width: 300px;
-            margin: 15px 0;
-            border-bottom: 2px solid white;
-        }
-
-        .input-box input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 1.1em;
-            color: white;
-        }
-
-        button {
-            width: 50%;
-            height: 50px;
-            background: white;
-            border-radius: 40px;
-            border: none;
-            outline: none;
-            color: black;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin-top: 70px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 3px 3px 6px white;
-        }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <title>login</title>
+<style>
         
-    </style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-weight: bold;
+  color: #333;
+  font-size: 2rem;
+}
+
+span {
+    font-size: 1rem;
+}
+
+.container {
+  background: #fff;
+  box-shadow: 0 10px 10px black;
+  position: relative;
+  width: 800px;
+  min-height: 500px;
+  display: flex;
+}
+
+.form-container {
+  width: 50%;
+  height: 100%;
+}
+
+.sign-in-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.form-container form {
+  background: #fff;
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.form-container input {
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+button {
+  border-radius: 20px;
+  background: black;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  border: none;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+button:hover {
+  background: blue;
+}
+
+.sign-up-container {
+    display: flex;
+    background-image: url('../img/moto.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-right: 1px solid black;
+}
+
+</style>
 </head>
-<body>
-    <div class="login-box">
-        <form action="inicio.php" method="POST" autocomplete="off">
-            <h2>LOGIN</h2>
-            <label class="label">Usuario</label>
-            <div class="input-box">
-                <input type="text" required>
-            </div>
-            
-            <label class="label">Contraseña</label>           
-            <div class="input-box"> 
-                <input type="password" required>
-            </div>
-
-            <button type="submit">Iniciar Sesion</button>
-
+  <body>
+    <div class="container">
+      <div class="form-container sign-up-container">
+      </div>
+      <div class="form-container sign-in-container">
+        <form action="#">
+          <h1>BIENVENIDO</h1>
+          <span>LOGIN</span>
+          <input type="text" placeholder="Usuario" />
+          <input type="password" placeholder="Password" />
+ 
+          <button type="submit">Iniciar sesión</button>
         </form>
+      </div>
     </div>
-
-
-</body>
+  </body>
 </html>
-
