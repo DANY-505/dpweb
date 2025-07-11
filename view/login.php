@@ -1,124 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="login.css" />
-    <title>login</title>
-<style>
-        
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: #f6f5f7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login</title>
 
-h1 {
-  font-weight: bold;
-  color: #333;
-  font-size: 2rem;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-span {
-    font-size: 1rem;
-}
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #25252b;
+    }
 
-.container {
-  background: #fff;
-  box-shadow: 0 10px 10px black;
-  position: relative;
-  width: 800px;
-  min-height: 500px;
-  display: flex;
-}
+    .container {
+      position: relative;
+      width: 750px;
+      height: 450px;
+      border: 2px solid #ff2770;
+      box-shadow: 0 0 25px #ff2770;
+      overflow: hidden;
+    }
 
-.form-container {
-  width: 50%;
-  height: 100%;
-}
+    .form-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0 40px;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-.sign-in-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
+    .form-box h2 {
+      font-size: 2rem;
+      text-align: center;
+      color: white;
+    }
 
-.form-container form {
-  background: #fff;
-  display: flex;
-  width: 250px;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    .input-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin-top: 25px;
+      color: white;
+      font-size: 1.1rem;
+    }
 
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      color: white;
+      font-weight: bold;
+      border-bottom: 2px solid white;
+      padding-right: 24px;
+    }
 
-.form-container input {
-  background: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 100%;
-}
+    .input-box label {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transition: .5s;
+    }
 
-button {
-  border-radius: 20px;
-  background: black;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  border: none;
-  transition: transform 80ms ease-in;
-  cursor: pointer;
-}
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+      top: -5px;
+      color: #ff2770;
 
-button:active {
-  transform: scale(0.95);
-}
-button:hover {
-  background: blue;
-}
+    }
 
-.sign-up-container {
-    display: flex;
-    background-image: url('../img/moto.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border-right: 1px solid black;
-}
+    .btn {
+      position: relative;
+      width: 100%;
+      height: 45px;
+      background: transparent;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 600;
+      overflow: hidden;
+      z-index: 1;
+      color: white;
+    }
 
-</style>
+    .btn::before {
+      content: "";
+      position: absolute;
+      height: 300%;
+      width: 100%;
+      background: linear-gradient(#25252b, #ff2770, #25252b, #ff2770);
+      top: -100%;
+      left: 0;
+      z-index: -1;
+      transition: .5s;
+    }
+
+    .btn:hover:before {
+      top: 0;
+    }
+
+    .regi a {
+      font-size: 1rem;
+      color: white;
+      text-align: center;
+      margin: 20px 0 10px;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .info-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      right: 0;
+      text-align: right;
+      padding: 0 40px 60px 150px;
+      color: white;
+    }
+
+    .info-content h2 {
+      color: white;
+      text-transform: uppercase;
+      font-size: 2rem;
+      line-height: 1.3;
+    }
+
+    .container .contai {
+      position: absolute;
+      right: 0;
+      top: -5px;
+      height: 600px;
+      width: 850px;
+      background: linear-gradient(450deg, #25252b, #ff2770);
+      transform: rotate(10deg) skewY(40deg);
+      transform-origin: bottom right;
+    }
+  </style>
+
+  <script>
+    const base_url = '<?= BASE_URL;?>';
+  </script>
 </head>
-  <body>
-    <div class="container">
-      <div class="form-container sign-up-container">
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="#">
-          <h1>BIENVENIDO</h1>
-          <span>LOGIN</span>
-          <input type="text" placeholder="Usuario" />
-          <input type="password" placeholder="Password" />
- 
-          <button type="submit">Iniciar sesión</button>
-        </form>
-      </div>
+
+<body>
+  <div class="container">
+    <div class="contai"></div>
+    <div class="form-box Login">
+      <h2>LOGIN</h2>
+      <form id="frm_login">
+
+        <div class="input-box">
+          <input type="text" id="username" name="username" required>
+          <label for="">Usuario</label>
+        </div>
+
+        <div class="input-box">
+          <input type="password" id ="password" name="password" required>
+          <label for="">Password</label>
+        </div>
+
+        <div class="input-box">
+          <button class="btn" type="button" onclick="iniciar_sesion();">Iniciar Sesion</button>
+        </div>
+
+      </form>
     </div>
-  </body>
+    <div class="info-content">
+      <h2>BIENVENIDO DE NUEVO</h2>
+    </div>
+  </div>
+  <script src="<?= BASE_URL; ?>view/function/user.js"></script>
+</body>
 </html>
