@@ -47,7 +47,7 @@ if($tipo == "iniciar_sesion"){
     }else {
         $existePersona = $objpPersona->existePersona($nro_identidad);
         if (!$existePersona) {
-            $respuesta = array('status' => false, 'msg' => 'Error, usuario no registrado');
+            $respuesta = array('status' => false, 'msg' => 'Usuario no registrado');
         }else{
             $persona = $objpPersona->buscarPersonaPorNroIdentidad($nro_identidad);
             if (password_verify($password, $persona->password)) {
@@ -56,7 +56,7 @@ if($tipo == "iniciar_sesion"){
                 $_SESSION['ventas_usuario'] = $persona->razon_social;
                 $respuesta = array('status' => true, 'msg' => 'Iniciaste sesión'); 
             }else{
-                $respuesta = array('status' => false, 'msg' => 'Error, contraseña incorrecto');
+                $respuesta = array('status' => false, 'msg' => 'Contraseña incorrecto');
             }
         }
     }

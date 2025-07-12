@@ -190,4 +190,5 @@
   </div>
   <script src="<?= BASE_URL; ?>view/function/user.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

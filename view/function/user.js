@@ -82,7 +82,11 @@ async function iniciar_sesion() {
     let password  = document.getElementById("password").value;
 
     if(usuario == "" || password == ""){
-        alert("error, campos vacios!");
+        Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Campos vacios",
+            });
         return;
     }
     try {
@@ -98,7 +102,11 @@ async function iniciar_sesion() {
         if (json.status) { // true
             location.replace(base_url + 'new-user');
         }else{
-            alert(json.msg)
+           Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: json.msg
+            });
         }
     } catch (error) {
         console.log(error);
