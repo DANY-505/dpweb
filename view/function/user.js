@@ -122,6 +122,15 @@ async function view_users() {
             cache: 'no-cache'
         });
         let json = await respuesta.json();
+        if (json.status) { // true
+            location.replace(base_url + 'users');
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: json.msg
+            });
+        }
     } catch (error) {
         console.log(error);
     }
