@@ -122,18 +122,27 @@ async function view_users() {
             cache: 'no-cache'
         });
         let json = await respuesta.json();
-        if (json.status) { // true
-            location.replace(base_url + 'users');
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: json.msg
+        if (json && json.length > 0) {
+            let html = '';
+            json.forEach((user, index) => {
+                html += `<tr>
+                    <td>${index + 1}</td>
+                    <td>${user.dni || ''}</td>
+                    <td>${user.nombres_apellidos || user.nombre || ''}</td> <!-- Ajusta según la columna real -->
+                    <td>${user.correo || user.email || ''}</td> <!-- Ajusta según la columna real -->
+                    <td>${user.rol || ''}</td>
+                    <td>${user.estado || ''}</td>
+                </tr>`;
             });
+            document.getElementById('usersBody').innerHTML = html;
+        } else {
+            document.getElementById('usersBody').innerHTML = '<tr><td colspan="6">No hay usuarios disponibles</td></tr>';
         }
     } catch (error) {
         console.log(error);
+        document.getElementById('usersBody').innerHTML = '<tr><td colspan="6">Error al cargar los usuarios</td></tr>';
     }
+}
 }
 if (document.getElementById('content_users')) {
     view_users();

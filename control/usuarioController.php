@@ -66,6 +66,7 @@ if($tipo == "iniciar_sesion"){
 
 if ($tipo == "mostrar_usuarios") {
     $usuarios = $objpPersona->mostrarUsuarios();
+    header('Content-Type: application/json');
     echo json_encode($usuarios);
     
 }
