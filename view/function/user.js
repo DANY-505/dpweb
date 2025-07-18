@@ -11,9 +11,9 @@ function validar_form() {
     let direccion = document.getElementById("direccion").value;
     let rol = document.getElementById("rol").value;
 
-    if (nro_documento=="" || razon_social=="" || telefono=="" || correo=="" || correo=="" || departamento=="" || provincia=="" || distrito=="" || cod_postal=="" || direccion=="" || rol=="") {
-       
-         Swal.fire({
+    if (nro_documento == "" || razon_social == "" || telefono == "" || correo == "" || correo == "" || departamento == "" || provincia == "" || distrito == "" || cod_postal == "" || direccion == "" || rol == "") {
+
+        Swal.fire({
             icon: 'warning',
             title: 'Campos vacíos',
             text: 'Por favor, complete todos los campos requeridos',
@@ -24,10 +24,10 @@ function validar_form() {
     registrarUsuario();
 }
 
-if(document.querySelector('#frm_user')){
+if (document.querySelector('#frm_user')) {
     //evita que se envie el formulario
     let frm_user = document.querySelector('#frm_user');
-    frm_user.onsubmit = function(e){
+    frm_user.onsubmit = function (e) {
         e.preventDefault();
         validar_form();
     }
@@ -78,15 +78,15 @@ function cancelar() {
 }
 
 async function iniciar_sesion() {
-    let usuario  = document.getElementById("username").value;
-    let password  = document.getElementById("password").value;
+    let usuario = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
-    if(usuario == "" || password == ""){
+    if (usuario == "" || password == "") {
         Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Campos vacios",
-            });
+            icon: "error",
+            title: "Error",
+            text: "Campos vacios",
+        });
         return;
     }
     try {
@@ -101,8 +101,8 @@ async function iniciar_sesion() {
         // validamos que json.status sea = true
         if (json.status) { // true
             location.replace(base_url + 'new-user');
-        }else{
-           Swal.fire({
+        } else {
+            Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: json.msg
@@ -111,5 +111,21 @@ async function iniciar_sesion() {
     } catch (error) {
         console.log(error);
     }
- 
+
+}
+
+async function view_users() {
+    try {
+        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=mostrar_usuarios', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache'
+        });
+        let json = await respuesta.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+if (document.getElementById('content_users')) {
+    view_users();
 }

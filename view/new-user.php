@@ -89,3 +89,4 @@
     </div>
     <!--fin de cuerpo de pagina-->
     <script src="<?php echo BASE_URL; ?>view/function/user.js"></script>
+    
