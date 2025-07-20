@@ -127,23 +127,22 @@ async function view_users() {
             json.forEach((user, index) => {
                 html += `<tr>
                     <td>${index + 1}</td>
-                    <td>${user.dni || ''}</td>
-                    <td>${user.nombres_apellidos || user.nombre || ''}</td> <!-- Ajusta según la columna real -->
-                    <td>${user.correo || user.email || ''}</td> <!-- Ajusta según la columna real -->
-                    <td>${user.rol || ''}</td>
+                    <td>${user.nro_identidad || ''}</td>
+                    <td>${user.razon_social|| ''}</td>
+                    <td>${user.correo |''}</td> 
                     <td>${user.estado || ''}</td>
                 </tr>`;
             });
-            document.getElementById('usersBody').innerHTML = html;
+            document.getElementById('content_users').innerHTML = html;
         } else {
-            document.getElementById('usersBody').innerHTML = '<tr><td colspan="6">No hay usuarios disponibles</td></tr>';
+            document.getElementById('content_users').innerHTML = '<tr><td colspan="6">No hay usuarios disponibles</td></tr>';
         }
     } catch (error) {
         console.log(error);
-        document.getElementById('usersBody').innerHTML = '<tr><td colspan="6">Error al cargar los usuarios</td></tr>';
+        document.getElementById('content_users').innerHTML = '<tr><td colspan="6">Error al cargar los usuarios</td></tr>';
     }
 }
-}
+
 if (document.getElementById('content_users')) {
     view_users();
 }
