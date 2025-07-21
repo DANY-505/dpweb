@@ -129,7 +129,8 @@ async function view_users() {
                     <td>${index + 1}</td>
                     <td>${user.nro_identidad || ''}</td>
                     <td>${user.razon_social|| ''}</td>
-                    <td>${user.correo |''}</td> 
+                    <td>${user.correo ||''}</td> 
+                    <td>${user.rol ||''}</td> 
                     <td>${user.estado || ''}</td>
                 </tr>`;
             });

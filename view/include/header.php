@@ -35,7 +35,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <i class="bi bi-house"></i>
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="new-user">Home</a>
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-person-square"></i>
@@ -43,11 +43,11 @@
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-box-seam"></i>
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>new-producto">Products</a>
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-menu-button-wide-fill"></i>
-                            <a class="nav-link" href="#">Categories</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>new-categoria">Categories</a>
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-people"></i>
