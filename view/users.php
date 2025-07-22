@@ -1,5 +1,5 @@
 <div class="container">
-    <h5 class="mt-3 mb-3 text-center">Lista de Usuarios</h2>
+    <h5 class="mt-3 text-center" style="background: black; color:white; font-style:italic">Lista de Usuarios</h2>
     <table class="table table-dark table-striped-columns">
         <thead>
             <tr>
@@ -9,6 +9,7 @@
                 <th>Correo</th>
                 <th>Rol</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
 
