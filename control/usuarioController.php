@@ -68,3 +68,48 @@ if ($tipo == "mostrar_usuarios") {
     header('Content-Type: application/json');
     echo json_encode($usuarios);
 }
+
+if ($tipo == "obtener_usuario"){
+    if (!isset($_POST['id']) || empty($_POST['id'])) {
+        echo json_encode(array('status' => false, 'msg' => 'Error, id no existe'));
+        exit;
+    }
+    $id = $_POST['id'];
+    $usuario = $objpPersona->obtenerUsuarioPorId($id);
+    header('Content-Type: application/json');
+    if($usuario){
+        echo json_encode(array('status' => true, 'data' => $usuario));
+    }else{
+        echo json_encode(array('status' => false, 'msg' => 'Error, usuario no encontrado'));
+    }
+}
+
+if ($tipo == "actualizar_usuario") {
+    if (!isset($_POST['id']) || empty($_POST['id'])) {
+        echo json_encode(array('status' => false, 'msg' => 'ID no existe'));
+        exit;
+    }
+    $id = $_POST['id'];
+    $nro_identidad = $_POST['nro_identidad'];
+    $razon_social = $_POST['razon_social'];
+    $correo = $_POST['correo'];
+    $rol = $_POST['rol'];
+    $estado = $_POST['estado'];
+
+    if ($objpPersona->existeIdentidadEnOtroUsuario($nro_identidad, $id)) {
+        echo json_encode(array('status' => false, 'msg' => 'El DNI ya existe en orto usuario'));
+        exit;
+    }
+    if ($objpPersona->existeCorreoEnOtroUsuario($correo, $id)) {
+        echo json_encode(array('status' => false, 'msg' => 'El correo ya existe en orto usuario'));
+        exit;
+    }
+    $succes = $objpPersona->actualizarUsuario($id, $nro_identidad, $razon_social, $correo, $rol, $estado);
+    header('Content-Type: application/json');
+    if ($succes) {
+        $respuesta = array('status' => true, 'msg' => 'Usuario actualizado');
+    }else{
+        $respuesta = array('status' => false, 'msg' => 'Error al actualizar usuario');
+    }
+    echo json_encode($respuesta);
+}
