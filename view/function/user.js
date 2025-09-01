@@ -133,7 +133,8 @@ async function view_users() {
                     <td>${user.rol ||''}</td> 
                     <td>${user.estado || ''}</td>
                     <td>
-                        <a href="`+ base_url + `edit_user/`+user.id+`" class="btn btn-primary">Editar</a>
+                        <a href="`+ base_url + `edit-user/`+user.id+`" class="btn btn-primary">Editar</a>
+                        <a href="`+ base_url + `edit-user/`+user.id+`" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>`;
             });
@@ -151,6 +152,7 @@ if (document.getElementById('content_users')) {
     view_users();
 }
 
+/*
 async function edit_user() {
     const pathArray = window.location.pathname.split('/');
     let id = pathArray[pathArray.length - 1];
@@ -187,6 +189,11 @@ async function edit_user() {
                 if (form.elements['nro_identidad']) form.elements['nro_identidad'].value = user.nro_identidad || '';
                 if (form.elements['razon_social']) form.elements['razon_social'].value = user.razon_social || '';
                 if (form.elements['correo']) form.elements['correo'].value = user.correo || '';
+                if (form.elements['departamento']) form.elements['departamento'].value = user.departamento || '';
+                if (form.elements['provincia']) form.elements['provincia'].value = user.provincia || '';
+                if (form.elements['distrito']) form.elements['distrito'].value = user.distrito || '';
+                if (form.elements['cod_postal']) form.elements['cod_postal'].value = user.cod_postal || '';
+                if (form.elements['direccion']) form.elements['direccion'].value = user.direccion || '';
                 if (form.elements['rol']) form.elements['rol'].value = user.rol || '';
                 if (form.elements['estado']) form.elements['estado'].value = user.estado || '';
             }
@@ -260,4 +267,45 @@ if (document.getElementById('frm_edit_user')) {
         e.preventDefault();
         update_user();
     };
+}
+*/
+
+async function edit_user() {
+    try {
+        let id_persona = document.getElementById('id_persona').value;
+        const datos = new FormData();
+        datos.append('id_persona', id_persona);
+
+        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=ver', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (!json.status){
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: json.msg
+            });
+            return;
+        }
+        document.getElementById('nro_identidad').value = json.data.nro_identidad;
+        document.getElementById('razon_social').value = json.data.razon_social;
+        document.getElementById('telefono').value = json.data.telefono;
+        document.getElementById('correo').value = json.data.correo;
+        document.getElementById('departamento').value = json.data.departamento;
+        document.getElementById('provincia').value = json.data.provincia;
+        document.getElementById('distrito').value = json.data.distrito;
+        document.getElementById('cod_postal').value = json.data.cod_postal;
+        document.getElementById('direccion').value = json.data.direccion;
+        document.getElementById('rol').value = json.data.rol;
+        document.getElementById('estado').value = json.data.estado;
+        
+    } catch (error) {
+        console.log('oops, ocurrio un error' + error);
+        
+    }
+    
 }

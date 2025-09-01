@@ -63,12 +63,13 @@ if($tipo == "iniciar_sesion"){
     echo json_encode($respuesta);
 }
 
+
 if ($tipo == "mostrar_usuarios") {
     $usuarios = $objpPersona->mostrarUsuarios();
     header('Content-Type: application/json');
     echo json_encode($usuarios);
 }
-
+/*
 if ($tipo == "obtener_usuario"){
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         echo json_encode(array('status' => false, 'msg' => 'Error, id no existe'));
@@ -93,6 +94,11 @@ if ($tipo == "actualizar_usuario") {
     $nro_identidad = $_POST['nro_identidad'];
     $razon_social = $_POST['razon_social'];
     $correo = $_POST['correo'];
+    $departamento = $_POST['departamento'];
+    $provincia = $_POST['provincia'];
+    $distrito = $_POST['distrito'];
+    $cod_postal = $_POST['cod_postal'];
+    $direccion = $_POST['direccion'];
     $rol = $_POST['rol'];
     $estado = $_POST['estado'];
 
@@ -104,12 +110,26 @@ if ($tipo == "actualizar_usuario") {
         echo json_encode(array('status' => false, 'msg' => 'El correo ya existe en orto usuario'));
         exit;
     }
-    $succes = $objpPersona->actualizarUsuario($id, $nro_identidad, $razon_social, $correo, $rol, $estado);
+    $succes = $objpPersona->actualizarUsuario($id, $nro_identidad, $razon_social, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $estado);
     header('Content-Type: application/json');
     if ($succes) {
         $respuesta = array('status' => true, 'msg' => 'Usuario actualizado');
     }else{
         $respuesta = array('status' => false, 'msg' => 'Error al actualizar usuario');
+    }
+    echo json_encode($respuesta);
+}
+*/
+
+if ($tipo == "ver"){
+    $respuesta = array('status' => false, 'msg' => '');
+    $id_persona = $_POST['id_persona'];
+    $usuario = $objpPersona->ver($id_persona);
+    if ($usuario) {
+        $respuesta ['status'] = true;
+        $respuesta ['data'] = $usuario;
+    }else {
+        $respuesta['msg'] = 'Error, usuario no existe';
     }
     echo json_encode($respuesta);
 }

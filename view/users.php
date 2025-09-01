@@ -1,6 +1,6 @@
 <div class="container">
     <h5 class="mt-3 text-center" style="background: black; color:white; font-style:italic">Lista de Usuarios</h2>
-    <table class="table table-dark table-striped-columns">
+    <table class="table table-dark table-striped-columns text-center">
         <thead>
             <tr>
                 <th>Nro</th>
