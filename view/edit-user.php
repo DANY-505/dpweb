@@ -14,40 +14,44 @@
             <div class="card-body">
                 <input type="hidden" name="id" value="">
                 <div class="form-group">
-                    <label>DNI</label>
-                    <input type="number" class="form-control" name="nro_identidad" value="" required>
+                    <label for="nro_identidad">DNI</label>
+                    <input type="number" class="form-control" id="nro_identidad" name="nro_identidad" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Nombres y Apellidos</label>
-                    <input type="text" class="form-control" name="razon_social" value="" required>
+                    <label for="razon_social">Nombres y Apellidos</label>
+                    <input type="text" class="form-control" id="razon_social" name="razon_social" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Correo</label>
-                    <input type="email" class="form-control" name="correo" value="" required>
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Departamento</label>
-                    <input type="text" class="form-control" name="departamento" value="" required>
+                    <label for="correo">Correo</label>
+                    <input type="email" class="form-control" id="correo" name="correo" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Provincia</label>
-                    <input type="text" class="form-control" name="provincia" value="" required>
+                    <label for="departamento">Departamento</label>
+                    <input type="text" class="form-control" id="departamento" name="departamento" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Distrito</label>
-                    <input type="text" class="form-control" name="distrito" value="" required>
+                    <label for="provincia">Provincia</label>
+                    <input type="text" class="form-control" id="provincia" name="provincia" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Codigo Postal</label>
-                    <input type="number" class="form-control" name="cod_postal" value="" required>
+                    <label for="distrito">Distrito</label>
+                    <input type="text" class="form-control" id="distrito" name="distrito" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Direccion</label>
-                    <input type="text" class="form-control" name="direccion" value="" required>
+                    <label for="cod_postal">Codigo Postal</label>
+                    <input type="number" class="form-control" id="cod_postal" name="cod_postal" value="" required>
                 </div>
                 <div class="form-group">
-                    <label>Rol</label>
-                    <select name="rol" class="form-control" required>
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="rol">Rol</label>
+                    <select id="rol" name="rol" class="form-control" required>
                         <option value="">Seleccionar rol</option>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
@@ -55,8 +59,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Estado</label>
-                    <select name="estado" class="form-control" required>
+                    <label for="estado">Estado</label>
+                    <select id="estado" name="estado" class="form-control" required>
                         <option value="">Seleccionar estado</option>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>

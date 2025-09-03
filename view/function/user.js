@@ -1,5 +1,5 @@
 
-function validar_form() {
+function validar_form(tipo) {
     let nro_documento = document.getElementById("nro_identidad").value;
     let razon_social = document.getElementById("razon_social").value;
     let telefono = document.getElementById("telefono").value;
@@ -21,7 +21,12 @@ function validar_form() {
         });
         return;
     }
-    registrarUsuario();
+    if (tipo == "nuevo") {
+        registrarUsuario();
+    }
+    if (tipo == "actualizar") {
+        actualizarUsuarioUsuario();
+    }
 }
 
 if (document.querySelector('#frm_user')) {
@@ -29,7 +34,7 @@ if (document.querySelector('#frm_user')) {
     let frm_user = document.querySelector('#frm_user');
     frm_user.onsubmit = function (e) {
         e.preventDefault();
-        validar_form();
+        validar_form("nuevo");
     }
 }
 
@@ -128,13 +133,13 @@ async function view_users() {
                 html += `<tr>
                     <td>${index + 1}</td>
                     <td>${user.nro_identidad || ''}</td>
-                    <td>${user.razon_social|| ''}</td>
-                    <td>${user.correo ||''}</td> 
-                    <td>${user.rol ||''}</td> 
+                    <td>${user.razon_social || ''}</td>
+                    <td>${user.correo || ''}</td> 
+                    <td>${user.rol || ''}</td> 
                     <td>${user.estado || ''}</td>
                     <td>
-                        <a href="`+ base_url + `edit-user/`+user.id+`" class="btn btn-primary">Editar</a>
-                        <a href="`+ base_url + `edit-user/`+user.id+`" class="btn btn-danger">Eliminar</a>
+                        <a href="`+ base_url + `edit-user/` + user.id + `" class="btn btn-primary">Editar</a>
+                        <a href="`+ base_url + `edit-user/` + user.id + `" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>`;
             });
@@ -283,7 +288,7 @@ async function edit_user() {
             body: datos
         });
         json = await respuesta.json();
-        if (!json.status){
+        if (!json.status) {
             Swal.fire({
                 icon: "error",
                 title: "Error",
@@ -302,10 +307,23 @@ async function edit_user() {
         document.getElementById('direccion').value = json.data.direccion;
         document.getElementById('rol').value = json.data.rol;
         document.getElementById('estado').value = json.data.estado;
-        
+
     } catch (error) {
         console.log('oops, ocurrio un error' + error);
-        
+
     }
-    
+
+}
+
+if (document.getElementById('#frm_edit_user')) {
+
+    let frm_user = document.querySelector('#frm_edit_user');
+    frm_user.onsubmit = function (e) {
+        e.preventDefault();
+        validar_form("actualizar");
+    };
+}
+
+async function actualizarUsuario() {
+    alert('actualizado');
 }
