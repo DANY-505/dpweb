@@ -68,7 +68,9 @@
                 </div>
                 <div class="m-3" style="display: flex; justify-content:center; gap: 20px">
                     <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="<?php echo BASE_URL; ?>users" class="btn btn-success">Volver</a>
                     <a href="<?php echo BASE_URL; ?>users" class="btn btn-secondary">Cancelar</a>
+
                 </div>
             </div>
         </form>

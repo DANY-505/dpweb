@@ -21,11 +21,12 @@ function validar_form(tipo) {
         });
         return;
     }
+
     if (tipo == "nuevo") {
         registrarUsuario();
     }
     if (tipo == "actualizar") {
-        actualizarUsuarioUsuario();
+        actualizarUsuario();
     }
 }
 
@@ -139,7 +140,7 @@ async function view_users() {
                     <td>${user.estado || ''}</td>
                     <td>
                         <a href="`+ base_url + `edit-user/` + user.id + `" class="btn btn-primary">Editar</a>
-                        <a href="`+ base_url + `edit-user/` + user.id + `" class="btn btn-danger">Eliminar</a>
+                        <button onclick="eliminar(` + user.id + `)" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>`;
             });
@@ -315,7 +316,7 @@ async function edit_user() {
 
 }
 
-if (document.getElementById('#frm_edit_user')) {
+if (document.querySelector('#frm_edit_user')) {
 
     let frm_user = document.querySelector('#frm_edit_user');
     frm_user.onsubmit = function (e) {
@@ -325,5 +326,76 @@ if (document.getElementById('#frm_edit_user')) {
 }
 
 async function actualizarUsuario() {
-    alert('actualizado');
+    const datos = new FormData(frm_edit_user);
+    let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=actualizar', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: datos
+    });
+    json = await respuesta.json();
+    if (!json.status) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ops, ocurrio un error al actualizar, contacte con el administrador",
+        });
+        console.log(json.msg);
+        return;
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: json.msg
+        });
+    }
+}
+
+async function eliminar(id) {
+    Swal.fire({
+        icon: "warning",
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede revertir",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "No, cancelar",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const datos = new FormData();
+                datos.append('id_persona', id)
+                let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=eliminar', {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    body: datos
+                });
+                json = await respuesta.json();
+                if (json.status) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Eliminado",
+                        text: json.msg
+                    }); 
+                    then (() =>{
+                        view_users();
+                    });
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: json.msg
+                    });
+                }
+
+            } catch (error) {
+                console.log('oops, ocurrio un error' + error);
+
+
+            }
+        }
+    });
 }
