@@ -78,7 +78,7 @@ function cancelar() {
         cancelButtonText: "No"
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = base_url + "?views=home";
+            window.location.href = base_url + "?view=new-user";
         }
     });
 }
