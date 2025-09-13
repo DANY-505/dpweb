@@ -38,7 +38,7 @@ if ($tipo == "registrar") {
     }
     echo json_encode($arrResponse);
 }
-
+/*
 if($tipo == "iniciar_sesion"){
     $nro_identidad = $_POST['username'];
     $password = $_POST['password'];
@@ -62,14 +62,14 @@ if($tipo == "iniciar_sesion"){
     }
     echo json_encode($respuesta);
 }
-
+*/
 
 if ($tipo == "mostrar_usuarios") {
     $usuarios = $objPersona->mostrarUsuarios();
     header('Content-Type: application/json');
     echo json_encode($usuarios);
 }
-/*
+
 if ($tipo == "obtener_usuario"){
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         echo json_encode(array('status' => false, 'msg' => 'Error, id no existe'));
@@ -119,7 +119,7 @@ if ($tipo == "actualizar_usuario") {
     }
     echo json_encode($respuesta);
 }
-*/
+
 
 if ($tipo == "ver"){
     $respuesta = array('status' => false, 'msg' => '');

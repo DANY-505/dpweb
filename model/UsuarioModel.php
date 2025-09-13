@@ -76,7 +76,7 @@ class UsuarioModel {
         }
         return $arr_usuarios;
     }
-    /*
+    
     public function obtenerUsuarioPorId($id) {
         if (!is_numeric($id) || $id <= 0) {
             return false;
@@ -170,7 +170,7 @@ class UsuarioModel {
         $stmt->close();
         return $existe;
     }
-    */
+    
 
     public function ver($id){
         $consulta = "SELECT * FROM persona WHERE id= '$id'";
