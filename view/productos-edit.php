@@ -3,9 +3,16 @@
     <div class="container" style="margin-top: 100px;">
         <div class="card">
             <div class="card-header" style="text-align:center;">
-                Registrar Producto
+                Editar Producto
+                <?php
+                if (isset($_GET["views"])) {
+                    $ruta = explode("/", $_GET["views"]);
+                    echo $ruta[1];
+                }
+                ?>
             </div>
-            <form id="frm_product" action="" method="">
+            <form id="frm_edit_producto" action="" method="">
+                <input type="hidden" name="id_producto" id="id_producto" value="<?= $ruta[1]; ?>">
                 <div class="card-body">
 
                     <div class="mb-3 row">
@@ -52,10 +59,9 @@
                     </div>
 
                     <div style="display: flex; justify-content:center; gap:20px">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                        <button type="reset" class="btn btn-info">Limpiar</button>
-                        <button type="button" class="btn btn-danger">Cancelar</button>
-                        <a href="<?php echo BASE_URL; ?>productos-lista">ver</a>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="<?php echo BASE_URL; ?>productos-lista" class="btn btn-secondary">Cancelar</a>
+                        
                     </div>
                 </div>
             </form>
@@ -63,5 +69,8 @@
     </div>
     <!-- fin de cuerpo de pagina -->
     <script src="<?php echo BASE_URL; ?>view/function/producto.js"></script>
+    <script>
+        edit_producto();
+    </script>
 
     

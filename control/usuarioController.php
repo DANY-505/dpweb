@@ -38,7 +38,7 @@ if ($tipo == "registrar") {
     }
     echo json_encode($arrResponse);
 }
-/*
+
 if($tipo == "iniciar_sesion"){
     $nro_identidad = $_POST['username'];
     $password = $_POST['password'];
@@ -62,7 +62,7 @@ if($tipo == "iniciar_sesion"){
     }
     echo json_encode($respuesta);
 }
-*/
+
 
 if ($tipo == "mostrar_usuarios") {
     $usuarios = $objPersona->mostrarUsuarios();
