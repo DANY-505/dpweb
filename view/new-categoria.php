@@ -25,7 +25,7 @@
                         <button type="submit" class="btn btn-primary">Registrar</button>
                         <button type="reset" class="btn btn-info">Limpiar</button>
                         <button type="button" class="btn btn-danger">Cancelar</button>
-                        <a href="<?php echo BASE_URL; ?>categorias-lista">ver</a>
+                        <a href="<?php echo BASE_URL; ?>categorias-lista" class="btn btn-success">ver</a>
                     </div>
                 </div>
             </form>
