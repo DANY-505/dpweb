@@ -1,3 +1,44 @@
+async function cargarCategorias() {
+    try {
+        console.log("Intentando cargar categorías desde:", base_url + 'control/categoriaController.php?tipo=mostrar_categorias');
+        let respuesta = await fetch(base_url + 'control/categoriaController.php?tipo=mostrar_categorias', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+        });
+        if (!respuesta.ok) {
+            throw new Error(`Respuesta no OK: ${respuesta.status} - ${respuesta.statusText}`);
+        }
+        let categorias = await respuesta.json();
+        console.log("Categorías recibidas:", categorias);
+
+        let selectCategoria = document.getElementById('id_categoria');
+        if (selectCategoria) {
+            selectCategoria.innerHTML = '<option value="">Seleccione una categoría</option>';
+            if (Array.isArray(categorias) && categorias.length > 0) {
+                categorias.forEach(categoria => {
+                    let option = document.createElement('option');
+                    option.value = categoria.id;
+                    option.textContent = `${categoria.id} - ${categoria.nombre}`; // Corrección aquí
+                    selectCategoria.appendChild(option);
+                });
+            } else {
+                console.warn('No se recibieron categorías o el array está vacío');
+                selectCategoria.innerHTML += '<option value="" disabled>No hay categorías disponibles</option>';
+            }
+        } else {
+            console.error('Elemento #id_categoria no encontrado en el DOM');
+        }
+    } catch (e) {
+        console.error("Error al cargar categorías:", e);
+        Swal.fire({
+            title: "Error",
+            text: "No se pudieron cargar las categorías: " + e.message,
+            icon: "error"
+        });
+    }
+}
+
 function validar_form(tipo) {
     let codigo  = document.getElementById("codigo").value;
     let nombre = document.getElementById("nombre").value;
