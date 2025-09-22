@@ -1,4 +1,5 @@
-async function cargarCategorias() {
+
+/*async function cargarCategorias() {
     try {
         console.log("Intentando cargar categorías desde:", base_url + 'control/categoriaController.php?tipo=mostrar_categorias');
         let respuesta = await fetch(base_url + 'control/categoriaController.php?tipo=mostrar_categorias', {
@@ -38,20 +39,20 @@ async function cargarCategorias() {
         });
     }
 }
-
+*/
 function validar_form(tipo) {
-    let codigo  = document.getElementById("codigo").value;
+    let codigo = document.getElementById("codigo").value;
     let nombre = document.getElementById("nombre").value;
     let detalle = document.getElementById("detalle").value;
     let precio = document.getElementById("precio").value;
     let stock = document.getElementById("stock").value;
-    let id_categoria  = document.getElementById("id_categoria").value;
+    let id_categoria = document.getElementById("id_categoria").value;
     let fecha_vencimiento = document.getElementById("fecha_vencimiento").value;
-    
 
-    if (codigo=="" || nombre=="" || detalle=="" || precio=="" || stock=="" || id_categoria=="" || fecha_vencimiento=="") {
-       
-         Swal.fire({
+
+    if (codigo == "" || nombre == "" || detalle == "" || precio == "" || stock == "" || id_categoria == "" || fecha_vencimiento == "") {
+
+        Swal.fire({
             icon: 'warning',
             title: 'Campos vacíos',
             text: 'Por favor, complete todos los campos requeridos',
@@ -67,10 +68,10 @@ function validar_form(tipo) {
     }
 }
 
-if(document.querySelector('#frm_product')){
+if (document.querySelector('#frm_product')) {
     //evita que se envie el formulario
     let frm_product = document.querySelector('#frm_product');
-    frm_product.onsubmit = function(e){
+    frm_product.onsubmit = function (e) {
         e.preventDefault();
         validar_form("nuevo");
     }
@@ -184,17 +185,17 @@ async function edit_producto() {
         document.getElementById('detalle').value = json.data.detalle;
         document.getElementById('precio').value = json.data.precio;
         document.getElementById('stock').value = json.data.stock;
-        document.getElementById('id_categoria').value = json.data.id_categoria ;
+        document.getElementById('id_categoria').value = json.data.id_categoria;
         document.getElementById('fecha_vencimiento').value = json.data.fecha_vencimiento;
 
     } catch (error) {
-        console.log('oops, ocurrio un error' + error);  
-    } 
+        console.log('oops, ocurrio un error' + error);
+    }
 }
 
 if (document.querySelector("#frm_edit_producto")) {
     let frm_edit_producto = document.querySelector("#frm_edit_producto");
-    frm_edit_producto.onsubmit = function (e){
+    frm_edit_producto.onsubmit = function (e) {
         e.preventDefault();
         validar_form("actualizar");
     }
@@ -254,7 +255,7 @@ async function eliminar(id) {
                         icon: "success",
                         title: "Eliminado",
                         text: json.msg
-                    }).then (() =>{ 
+                    }).then(() => {
                         view_producto();
                     });
 
@@ -271,4 +272,19 @@ async function eliminar(id) {
             }
         }
     });
+}
+
+async function cargar_categorias() {
+    let respuesta = await fetch(base_url + 'control/categoriaController.php?tipo=mostrar_categorias', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache'
+    });
+    json = await respuesta.json();
+    json.data.forEach(element => {
+        
+    });
+
+
+
 }

@@ -24,6 +24,15 @@ class CategoriaModel{
 
     }
 
+    public function obtenerCategoriaPorId($id)
+    {
+        $stmt = $this->conexion->prepare("SELECT * FROM categoria WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc();
+    }
+
     public function buscarCategoriaPorNombre($nombre){
         $consulta = "SELECT id, nombre FROM categoria WHERE nombre='$nombre' LIMIT 1";
         $sql = $this->conexion->query($consulta);

@@ -4,7 +4,7 @@
         <div class="card-header" style="text-align:center;">
             Registrar Producto
         </div>
-        <form id="frm_product" action="" method="">
+        <form id="frm_product" action="" method="" enctype="multipart/form-data">
             <div class="card-body">
 
                 <div class="mb-3 row">
@@ -53,6 +53,13 @@
                     </div>
                 </div>
 
+                <div class="mb-3 row">
+                    <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="imagen" name="imagen"  accept="">
+                    </div>
+                </div>
+
                 <div style="display: flex; justify-content:center; gap:20px">
                     <button type="submit" class="btn btn-primary">Registrar</button>
                     <button type="reset" class="btn btn-info">Limpiar</button>
@@ -67,6 +74,10 @@
 <script src="<?php echo BASE_URL; ?>view/function/producto.js"></script>
 
 <script>
+    cargar_categorias();
+</script>
+<!--
+<script>
     document.addEventListener('DOMContentLoaded', () => {
         let partes = window.location.pathname.split('/');
         let id = partes[partes.length - 1];
@@ -77,4 +88,4 @@
             obtenerProductoPorId(id); // Luego cargar el producto para seleccionar la categoría
         }
     });
-</script>
+</script>-->

@@ -17,6 +17,16 @@ class ProductsModel{
         return $sql;
     }
 
+    public function existeCodigo($codigo)
+    {
+        $codigo = $this->conexion->real_escape_string($codigo);
+        $consulta = "SELECT id FROM producto WHERE codigo='$codigo' LIMIT 1";
+        $sql = $this->conexion->query($consulta);
+        return $sql->num_rows;
+    }
+
+    
+
     public function existeProducto($codigo){
         $consulta = "SELECT * FROM producto WHERE codigo ='$codigo'";
         $sql = $this->conexion->query($consulta);

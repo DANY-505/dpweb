@@ -48,6 +48,14 @@ if ($tipo == "ver") {
     echo json_encode($respuesta);
 }
 
+if ($tipo == "obtener_categoria") {
+    header('Content-Type: application/json');
+    $id = $_GET['id'];
+    $modelo = new CategoriaModel();
+    $categoria = $modelo->obtenerCategoriaPorId($id);
+    echo json_encode($categoria);
+    exit;
+}
 
 if ($tipo == "actualizar") {
     $id_categoria = $_POST['id_categoria'];
