@@ -30,9 +30,15 @@ if ($tipo == "registrar") {
 }
 
 if ($tipo == "mostrar_categorias") {
-    $categorias = $objCategoria->mostrarCategorias();
-    header('Content-Type: application/json');
-    echo json_encode($categorias);
+   $categorias = $objCategoria->mostrarCategorias();
+   $respuesta = array();
+   if (!empty($categorias)) {
+    $respuesta = array('status' => true, 'msg' => 'Categorias encontradas', 'data' => $categorias);
+   }else {
+    $respuesta = array('status' => false, 'msg' => 'No ahy categorias registradas', 'data' => array());
+   }
+   header('Content-Type: application/json');
+   echo json_encode($respuesta);
 }
 
 if ($tipo == "ver") {

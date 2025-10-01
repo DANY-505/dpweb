@@ -7,6 +7,9 @@
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoria</th>
+                <th>Proveedor</th>
                 <th>Fecha Vencimiento</th>
                 <th>Acciones</th>
             </tr>

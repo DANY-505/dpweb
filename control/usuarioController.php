@@ -76,7 +76,7 @@ if ($tipo == "obtener_usuario"){
         exit;
     }
     $id = $_POST['id'];
-    $usuario = $objpPersona->obtenerUsuarioPorId($id);
+    $usuario = $objPersona->obtenerUsuarioPorId($id);
     header('Content-Type: application/json');
     if($usuario){
         echo json_encode(array('status' => true, 'data' => $usuario));
@@ -85,41 +85,17 @@ if ($tipo == "obtener_usuario"){
     }
 }
 
-if ($tipo == "actualizar_usuario") {
-    if (!isset($_POST['id']) || empty($_POST['id'])) {
-        echo json_encode(array('status' => false, 'msg' => 'ID no existe'));
-        exit;
+if ($tipo == "mostrar_proveedores") {
+    $proveedores = $objPersona->mostrarProveedores();
+    $respuesta = array();
+    if (!empty($proveedores)) {
+        $respuesta = array('status' => true, 'msg' => 'Proveedores encontrados', 'data' => $proveedores);
+    }else {
+        $respuesta = array('status' => false, 'msg' => 'No hay proveedores registrados', 'data' => array());
     }
-    $id = $_POST['id'];
-    $nro_identidad = $_POST['nro_identidad'];
-    $razon_social = $_POST['razon_social'];
-    $correo = $_POST['correo'];
-    $departamento = $_POST['departamento'];
-    $provincia = $_POST['provincia'];
-    $distrito = $_POST['distrito'];
-    $cod_postal = $_POST['cod_postal'];
-    $direccion = $_POST['direccion'];
-    $rol = $_POST['rol'];
-    $estado = $_POST['estado'];
-
-    if ($objpPersona->existeIdentidadEnOtroUsuario($nro_identidad, $id)) {
-        echo json_encode(array('status' => false, 'msg' => 'El DNI ya existe en orto usuario'));
-        exit;
-    }
-    if ($objpPersona->existeCorreoEnOtroUsuario($correo, $id)) {
-        echo json_encode(array('status' => false, 'msg' => 'El correo ya existe en orto usuario'));
-        exit;
-    }
-    $succes = $objpPersona->actualizarUsuario($id, $nro_identidad, $razon_social, $correo, $departamento, $provincia, $distrito, $cod_postal, $direccion, $rol, $estado);
     header('Content-Type: application/json');
-    if ($succes) {
-        $respuesta = array('status' => true, 'msg' => 'Usuario actualizado');
-    }else{
-        $respuesta = array('status' => false, 'msg' => 'Error al actualizar usuario');
-    }
     echo json_encode($respuesta);
 }
-
 
 if ($tipo == "ver"){
     $respuesta = array('status' => false, 'msg' => '');

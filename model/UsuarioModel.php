@@ -98,6 +98,21 @@ class UsuarioModel {
         $stmt->close();
         return false;
     }
+
+    public function mostrarProveedores(){
+        $arr_proveedores = array();
+        $consulta = "SELECT * FROM persona WHERE rol = 'proveedor'";
+        $sql = $this->conexion->query($consulta);
+
+        if (!$sql) {
+            error_log("Error en query(): " . $this->conexion->error);
+            return $arr_proveedores;
+        }
+        while ($objeto = $sql->fetch_object()){
+            array_push($arr_proveedores, $objeto);
+        }
+        return $arr_proveedores;
+    }
     
     public function existeCorreoEnOtroUsuario($correo, $excluirId) {
         $consulta = "SELECT id FROM persona WHERE correo = ? AND id != ? LIMIT 1";
