@@ -51,7 +51,7 @@
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-people"></i>
-                            <a class="nav-link" href="#">Clients</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>clientes-new">Clients</a>
                         </li>
                         <li class="nav-item">
                             <i class="bi bi-shop"></i>
