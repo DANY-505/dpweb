@@ -61,6 +61,10 @@
                             <i class="bi bi-cart3"></i>
                             <a class="nav-link" href="#">Sales</a>
                         </li>
+                        <li class="nav-item">
+                            <i class="bi bi-file-person"></i>
+                            <a class="nav-link" href="<?= BASE_URL ?>proveedor-new">Proveedor</a>
+                        </li>
 
                     </ul>
                     <form class="d-flex" role="search">

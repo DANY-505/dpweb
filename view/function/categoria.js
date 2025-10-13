@@ -83,9 +83,9 @@ async function view_categoria() {
             cache: 'no-cache'
         });
         let json = await respuesta.json();
-        if (json && json.length > 0) {
+        if (json.status && json.data && json.data.length > 0) {
             let html = '';
-            json.forEach((categoria, index) => {
+            json.data.forEach((categoria, index) => {
                 html += `<tr>
                     <td>${index + 1}</td>
                     <td>${categoria.nombre || ''}</td>

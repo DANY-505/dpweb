@@ -65,7 +65,7 @@ class UsuarioModel {
 
     public function mostrarUsuarios() {
         $arr_usuarios = array();
-        $consulta = "SELECT * FROM persona";
+        $consulta = "SELECT * FROM persona WHERE rol<>'proveedor' AND  rol<>'cliente'";
         $sql = $this->conexion->query($consulta);
         if (!$sql) {
             error_log("Error en query(): " . $this->conexion->error);
@@ -76,6 +76,7 @@ class UsuarioModel {
         }
         return $arr_usuarios;
     }
+
     
     public function obtenerUsuarioPorId($id) {
         if (!is_numeric($id) || $id <= 0) {
@@ -97,21 +98,6 @@ class UsuarioModel {
         }
         $stmt->close();
         return false;
-    }
-
-    public function mostrarProveedores(){
-        $arr_proveedores = array();
-        $consulta = "SELECT * FROM persona WHERE rol = 'proveedor'";
-        $sql = $this->conexion->query($consulta);
-
-        if (!$sql) {
-            error_log("Error en query(): " . $this->conexion->error);
-            return $arr_proveedores;
-        }
-        while ($objeto = $sql->fetch_object()){
-            array_push($arr_proveedores, $objeto);
-        }
-        return $arr_proveedores;
     }
     
     public function existeCorreoEnOtroUsuario($correo, $excluirId) {
@@ -161,6 +147,36 @@ class UsuarioModel {
         $consulta = "DELETE FROM persona WHERE  id = '$id_persona'";
         $sql = $this->conexion->query($consulta);
         return $sql;
+    }
+
+    public function mostrarClientes(){
+        $arr_usuarios = array();
+        $consulta = "SELECT * FROM persona WHERE rol = 'cliente'";
+        $sql = $this->conexion->query($consulta);
+
+        if (!$sql) {
+            error_log("Error en query(): " . $this->conexion->error);
+            return $arr_usuarios;
+        }
+        while ($objeto = $sql->fetch_object()){
+            array_push($arr_usuarios, $objeto);
+        }
+        return $arr_usuarios;
+    }
+
+      public function mostrarProveedores(){
+        $arr_usuarios = array();
+        $consulta = "SELECT * FROM persona WHERE rol = 'proveedor'";
+        $sql = $this->conexion->query($consulta);
+
+        if (!$sql) {
+            error_log("Error en query(): " . $this->conexion->error);
+            return $arr_usuarios;
+        }
+        while ($objeto = $sql->fetch_object()){
+            array_push($arr_usuarios, $objeto);
+        }
+        return $arr_usuarios;
     }
 
 }

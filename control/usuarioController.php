@@ -85,17 +85,6 @@ if ($tipo == "obtener_usuario"){
     }
 }
 
-if ($tipo == "mostrar_proveedores") {
-    $proveedores = $objPersona->mostrarProveedores();
-    $respuesta = array();
-    if (!empty($proveedores)) {
-        $respuesta = array('status' => true, 'msg' => 'Proveedores encontrados', 'data' => $proveedores);
-    }else {
-        $respuesta = array('status' => false, 'msg' => 'No hay proveedores registrados', 'data' => array());
-    }
-    header('Content-Type: application/json');
-    echo json_encode($respuesta);
-}
 
 if ($tipo == "ver"){
     $respuesta = array('status' => false, 'msg' => '');
@@ -159,4 +148,29 @@ if($tipo == "eliminar"){
         echo json_encode($arrResponse);
         exit;
     }
+}
+
+if ($tipo == "mostrar_clientes") {
+    $usuarios = $objPersona->mostrarClientes();
+    $respuesta = array();
+    if (!empty($usuarios)) {
+        $respuesta = array('status' => true, 'msg' => 'Clientes encontrados', 'data' => $usuarios);
+    }else {
+        $respuesta = array('status' => false, 'msg' => 'No hay clientes registrados', 'data' => array());
+    }
+    header('Content-Type: application/json');
+    echo json_encode($respuesta);
+    exit;
+}
+
+if ($tipo == "mostrar_proveedores") {
+    $usuarios = $objPersona->mostrarProveedores();
+    $respuesta = array();
+    if (!empty($usuarios)) {
+        $respuesta = array('status' => true, 'msg' => 'Proveedores encontrados', 'data' => $usuarios);
+    }else {
+        $respuesta = array('status' => false, 'msg' => 'No hay proveedores registrados', 'data' => array());
+    }
+    header('Content-Type: application/json');
+    echo json_encode($respuesta);
 }

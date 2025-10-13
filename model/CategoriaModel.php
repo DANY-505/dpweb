@@ -24,6 +24,7 @@ class CategoriaModel{
 
     }
 
+    
     public function obtenerCategoriaPorId($id)
     {
         $stmt = $this->conexion->prepare("SELECT * FROM categoria WHERE id = ?");
