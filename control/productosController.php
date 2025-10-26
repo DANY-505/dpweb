@@ -164,12 +164,20 @@ if ($tipo == "actualizar") {
                     echo json_encode(['status' => false, 'msg' => 'No se pudo guardar la imagen']);
                     exit;
                 }
+
+                // Opcional: Eliminar la imagen anterior si existe y no es la misma
+                if (!empty($producto->imagen) && file_exists("../" . $producto->imagen)) {
+                    @unlink("../" . $producto->imagen);
+                }
             }
 
-            $actualizar = $objProducto->actualizar($id_producto, $codigo, $nombre, $detalle, $precio, $stock, $id_categoria, $fecha_vencimiento, $id_proveedor);
+            $actualizar = $objProducto->actualizar($id_producto, $codigo, $nombre, $detalle, $precio, $stock, $id_categoria, $fecha_vencimiento, $id_proveedor, $imagen);
             if ($actualizar) {
                 $arrResponse = array('status' => true, 'msg' => 'Actualizado correctamente');
             } else {
+                if (isset($rutaFisica) && file_exists($rutaFisica)) {
+                    @unlink($rutaFisica);
+                }
                 $arrResponse = array('status' => false, 'msg' => $actualizar);
             }
             echo json_encode($arrResponse);

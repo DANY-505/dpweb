@@ -156,6 +156,14 @@ async function edit_producto() {
         document.getElementById('id_categoria').value = json.data.id_categoria;
         document.getElementById('fecha_vencimiento').value = json.data.fecha_vencimiento;
         document.getElementById('id_proveedor').value = json.data.id_proveedor;
+        // Mostrar la imagen actual si existe
+        if (json.data.imagen) {
+            const imagenActual = document.getElementById('imagen_actual');
+            if (imagenActual) {
+                imagenActual.src = base_url + json.data.imagen;
+                imagenActual.style.display = 'block';
+            }
+        }
 
     } catch (error) {
         console.log('oops, ocurrio un error' + error);
