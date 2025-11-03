@@ -42,7 +42,7 @@ if (document.querySelector('#frm_proveedor')) {
 async function registrarProveedor() {
     try {
         const datos = new FormData(frm_proveedor);
-        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=registrar', {
+        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=registrar', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
