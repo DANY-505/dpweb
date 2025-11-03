@@ -41,7 +41,7 @@ async function registrarProducto() {
     try {
         const frm_product = document.querySelector("#frm_product");
         const datos = new FormData(frm_product);
-        let respuesta = await fetch(base_url + 'control/productosController.php?tipo=registrar', {
+        let respuesta = await fetch(base_url + 'control/ProductosController.php?tipo=registrar', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -84,7 +84,7 @@ function cancelar() {
 
 async function view_producto() {
     try {
-    let respuesta = await fetch(base_url + 'control/productosController.php?tipo=mostrar_productos', {
+    let respuesta = await fetch(base_url + 'control/ProductosController.php?tipo=mostrar_productos', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache'
@@ -133,7 +133,7 @@ async function edit_producto() {
         const datos = new FormData();
         datos.append('id_producto', id_producto);
 
-        let respuesta = await fetch(base_url + 'control/productosController.php?tipo=ver', {
+        let respuesta = await fetch(base_url + 'control/ProductosController.php?tipo=ver', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -181,7 +181,7 @@ if (document.querySelector("#frm_edit_producto")) {
 async function actualizarProducto() {
     const frm_edit_producto = document.querySelector("#frm_edit_producto")
     const datos = new FormData(frm_edit_producto);
-    let respuesta = await fetch(base_url + 'control/productosController.php?tipo=actualizar', {
+    let respuesta = await fetch(base_url + 'control/ProductosController.php?tipo=actualizar', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -220,7 +220,7 @@ async function eliminar(id) {
             try {
                 const datos = new FormData();
                 datos.append('id_producto', id)
-                let respuesta = await fetch(base_url + 'control/productosController.php?tipo=eliminar', {
+                let respuesta = await fetch(base_url + 'control/ProductosController.php?tipo=eliminar', {
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -252,7 +252,7 @@ async function eliminar(id) {
 }
 
 async function cargar_categorias() {
-    let respuesta = await fetch(base_url + 'control/categoriaController.php?tipo=mostrar_categorias', {
+    let respuesta = await fetch(base_url + 'control/CategoriaController.php?tipo=mostrar_categorias', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache'
@@ -273,7 +273,7 @@ async function cargar_categorias() {
 }
 
 async function cargar_proveedores() {
-    let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=mostrar_proveedores', {
+    let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=mostrar_proveedores', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache'

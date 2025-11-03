@@ -42,7 +42,7 @@ if (document.querySelector('#frm_client')) {
 async function registrarCliente() {
     try {
         const datos = new FormData(frm_client);
-        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=registrar', {
+        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=registrar', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -87,7 +87,7 @@ function cancelar() {
 
 async function view_clients() {
     try {
-        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=mostrar_clientes', {
+        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=mostrar_clientes', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache'
@@ -130,7 +130,7 @@ async function edit_clients() {
         const datos = new FormData();
         datos.append('id_persona', id_persona);
 
-        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=ver', {
+        let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=ver', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -175,7 +175,7 @@ if (document.querySelector('#frm_edit_user')) {
 
 async function actualizarCliente() {
     const datos = new FormData(frm_edit_user);
-    let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=actualizar', {
+    let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=actualizar', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -214,7 +214,7 @@ async function eliminar(id) {
             try {
                 const datos = new FormData();
                 datos.append('id_persona', id)
-                let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=eliminar', {
+                let respuesta = await fetch(base_url + 'control/UsuarioController.php?tipo=eliminar', {
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',

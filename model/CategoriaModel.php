@@ -1,5 +1,6 @@
 <?php
 require_once("../library/conexion.php");
+
 class CategoriaModel{
     private $conexion;
     function __construct(){
