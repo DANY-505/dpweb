@@ -14,8 +14,6 @@
         </thead>
 
         <tbody id="content_users">
-
-
         </tbody>
     </table>
 </div>
