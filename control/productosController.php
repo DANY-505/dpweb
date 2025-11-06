@@ -69,7 +69,7 @@ if ($tipo == 'registrar') {
     }
     exit;
 }
-/*
+
 if ($tipo == "mostrar_productos") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $productos = $objProducto->mostrarProductos();
@@ -97,9 +97,9 @@ if ($tipo == "mostrar_productos") {
     echo json_encode($respuesta);
     exit;
 }
-*/ 
 
-if ($tipo == "mostrar_productos") {
+
+if ($tipo == "mostrar_productos_vista") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $productos = $objProducto->mostrarProductos();
     $categoriasMap = array(); // Agrupar por categoría

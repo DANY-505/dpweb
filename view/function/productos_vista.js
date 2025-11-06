@@ -1,6 +1,6 @@
 async function cargarProductosTienda() {
     try {
-        const respuesta = await fetch(base_url + 'control/productosController.php?tipo=mostrar_productos', {
+        const respuesta = await fetch(base_url + 'control/productosController.php?tipo=mostrar_productos_vista', {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache'
