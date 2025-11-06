@@ -69,7 +69,7 @@ if ($tipo == 'registrar') {
     }
     exit;
 }
-
+/*
 if ($tipo == "mostrar_productos") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $productos = $objProducto->mostrarProductos();
@@ -93,6 +93,40 @@ if ($tipo == "mostrar_productos") {
         }
         $respuesta = array('status' => true, 'msg' => '', 'data' => $arrProduct);
     }
+    header('Content-Type: application/json');
+    echo json_encode($respuesta);
+    exit;
+}
+*/ 
+
+if ($tipo == "mostrar_productos") {
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    $productos = $objProducto->mostrarProductos();
+    $categoriasMap = array(); // Agrupar por categoría
+
+    if (count($productos)) {
+        foreach ($productos as $producto) {
+            $categoria = $objCategoria->ver($producto->id_categoria);
+            $nombreCategoria = $categoria && property_exists($categoria, 'nombre') ? $categoria->nombre : "Sin categoría";
+
+            $proveedor = $objPersona->ver($producto->id_proveedor);
+            $nombreProveedor = $proveedor && property_exists($proveedor, 'razon_social') ? $proveedor->razon_social : "Sin proveedor";
+
+            $producto->categoria = $nombreCategoria;
+            $producto->proveedor = $nombreProveedor;
+
+            // Agrupar
+            if (!isset($categoriasMap[$nombreCategoria])) {
+                $categoriasMap[$nombreCategoria] = [];
+            }
+            $categoriasMap[$nombreCategoria][] = $producto;
+        }
+
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $categoriasMap);
+    } else {
+        $respuesta = array('status' => true, 'msg' => 'No hay productos', 'data' => []);
+    }
+
     header('Content-Type: application/json');
     echo json_encode($respuesta);
     exit;

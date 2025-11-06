@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158,7 +157,7 @@
   </style>
 
   <script>
-    const base_url = '<?= BASE_URL;?>';
+    const base_url = '<?= BASE_URL; ?>';
   </script>
 </head>
 
@@ -175,7 +174,7 @@
         </div>
 
         <div class="input-box">
-          <input type="password" id ="password" name="password" required>
+          <input type="password" id="password" name="password" required>
           <label for="">Password</label>
         </div>
 
@@ -192,5 +191,5 @@
   <script src="<?= BASE_URL; ?>view/function/user.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>
-  
