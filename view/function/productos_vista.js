@@ -36,8 +36,8 @@ async function cargarProductosTienda() {
                             <p class="card-text text-muted small">Categoría: ${p.categoria}</p>
                             <p class="card-text text-success fw-bold">$${parseFloat(p.precio).toFixed(2)}</p>
                             <div class="mt-auto d-flex gap-1">
-                                <a href="${base_url}producto-detalle/${p.id}" class="btn btn-outline-primary btn-sm flex-fill">Ver</a>
-                                <button onclick="agregarAlCarrito(${p.id})" class="btn btn-success btn-sm flex-fill">Carrito</button>
+                                <a href="${base_url}producto-detalle/${p.id}" class="btn btn-outline-primary btn-sm flex-fill">Ver Detalle</a>
+                                <button onclick="agregarAlCarrito(${p.id})" class="btn btn-success btn-sm flex-fill">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
