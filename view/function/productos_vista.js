@@ -27,7 +27,7 @@ async function cargarProductosTienda() {
             productos.forEach(p => {
                 const imagen = p.imagen ? base_url  + p.imagen : 'https://via.placeholder.com/300x200?text=Sin+Imagen';
 
-                html += `;
+                html += `
                 <div class="col-md-3 col-sm-6 mb-4">
                     <div class="card h-100 shadow-sm border-0">
                         <img src="${imagen}" class="card-img-top" alt="${p.nombre}" style="height: 200px; object-fit: cover;">
