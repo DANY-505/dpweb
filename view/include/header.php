@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>view/css/style.css">
 
     <script>
         const base_url = '<?php echo BASE_URL;?>';
@@ -24,73 +25,87 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">LOGO</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <i class="bi bi-house"></i>
-                            <a class="nav-link active" aria-current="page" href="new-user">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-person-square"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>users">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-box-seam"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>new-producto">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-box-seam"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>productos-vista">Products View</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-menu-button-wide-fill"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>new-categoria">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-people"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>clientes-new">Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-shop"></i>
-                            <a class="nav-link" href="#">Shops</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-cart3"></i>
-                            <a class="nav-link" href="#">Sales</a>
-                        </li>
-                        <li class="nav-item">
-                            <i class="bi bi-file-person"></i>
-                            <a class="nav-link" href="<?= BASE_URL ?>proveedor-new">Proveedor</a>
-                        </li>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
 
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Menu
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                    <li><a class="dropdown-item" href="#">Ajustes</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
-                                </ul>
-                            </li>
+    <!-- Left Sidebar Navbar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="navbar-brand">LOGO</div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="new-user">
+                    <i class="bi bi-house"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>users">
+                    <i class="bi bi-person-square"></i>
+                    Users
+                </a>
+            </li>
+            
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>clientes-list">
+                    <i class="bi bi-people"></i>
+                    Clients
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>categorias-lista">
+                    <i class="bi bi-menu-button-wide-fill"></i>
+                    Categories
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>productos-lista">
+                    <i class="bi bi-box-seam"></i>
+                    Products
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>productos-vista">
+                    <i class="bi bi-eye"></i>
+                    Products View
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URL ?>proveedor-list">
+                    <i class="bi bi-file-person"></i>
+                    Proveedor
+                </a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-shop"></i>
+                    Shops
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-cart3"></i>
+                    Sales
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-gear"></i>
+                    Menu
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-                        </ul>
-
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- Main Content Wrapper -->
+    <div class="main-content">

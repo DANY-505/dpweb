@@ -70,12 +70,11 @@
                     </div>
                 </div>
 
-                <div style="display: flex; justify-content:center; gap:20px">
-                    <button type="submit" class="btn btn-primary">Registrar</button>
-                    <button type="reset" class="btn btn-info">Limpiar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
-                    <a href="<?php echo BASE_URL; ?>productos-lista" class="btn btn-success">ver</a>
-                </div>
+                    <div style="display: flex; justify-content:center; gap:20px">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="reset" class="btn btn-info">Limpiar</button>
+                        <button type="button" class="btn btn-danger" onclick="window.location.href='<?php echo BASE_URL; ?>productos-lista'">Cancelar</button>
+                    </div>
             </div>
         </form>
     </div>

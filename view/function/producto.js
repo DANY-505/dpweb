@@ -108,8 +108,8 @@ async function view_producto() {
                     <td>${producto.proveedor || ''}</td>
                     <td>${producto.fecha_vencimiento || ''}</td>
                     <td>
-                        <a href="${base_url}productos-edit/${producto.id}" class="btn btn-primary">Editar</a>
-                        <button onclick="eliminar(` + producto.id + `)" class="btn btn-danger">Eliminar</button>
+                        <button onclick="window.location.href='${base_url}productos-edit/${producto.id}'" class="btn btn-edit">Editar</button>
+                        <button onclick="eliminar(` + producto.id + `)" class="btn btn-delete">Eliminar</button>
                     </td>
                 </tr>`;
         });

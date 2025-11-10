@@ -104,8 +104,8 @@ async function view_clients() {
                     <td>${user.rol || ''}</td> 
                     <td>${user.estado || ''}</td>
                     <td>
-                        <a href="`+ base_url + `clientes-edit/` + user.id + `" class="btn btn-primary">Editar</a>
-                        <button onclick="eliminar(` + user.id + `)" class="btn btn-danger">Eliminar</button>
+                        <button onclick="window.location.href='`+ base_url + `clientes-edit/` + user.id + `'" class="btn btn-edit">Editar</button>
+                        <button onclick="eliminar(` + user.id + `)" class="btn btn-delete">Eliminar</button>
                     </td>
                 </tr>`;
             });

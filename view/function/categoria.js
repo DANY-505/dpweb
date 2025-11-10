@@ -91,8 +91,8 @@ async function view_categoria() {
                     <td>${categoria.nombre || ''}</td>
                     <td>${categoria.detalle || ''}</td>
                     <td>
-                        <a href="`+ base_url + `categorias-edit/` + categoria.id + `" class="btn btn-primary">Editar</a>
-                        <button onclick="eliminar(` + categoria.id + `)" class="btn btn-danger">Eliminar</button>
+                        <button onclick="window.location.href='`+ base_url + `categorias-edit/` + categoria.id + `'" class="btn btn-edit">Editar</button>
+                        <button onclick="eliminar(` + categoria.id + `)" class="btn btn-delete">Eliminar</button>
                     </td>
                 </tr>`;
             });
