@@ -63,7 +63,8 @@
                 <div class="mb-3 row">
                     <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="imagen" name="imagen"  accept="">
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept=".jpg, .jpeg, .png">
+                        
                     </div>
                 </div>
 
@@ -89,22 +90,9 @@
 <!-- fin de cuerpo de pagina -->
 <script src="<?php echo BASE_URL; ?>view/function/producto.js"></script>
 <script>
-    edit_producto();
+    cargar_categorias();
+    cargar_proveedores();
 </script>
-
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        // Obtener el ID del producto de la URL
-        let partes = window.location.pathname.split('/');
-        let id = partes[partes.length - 1];
-        
-        if (!isNaN(id)) {
-            // Cargar categorías y proveedores primero
-            await cargar_categorias();
-            await cargar_proveedores();
-            
-            // Luego cargar los datos del producto
-            await edit_producto(id);
-        }
-    });
+    edit_producto();
 </script>
