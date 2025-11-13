@@ -285,3 +285,73 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
+
+/* Estilo único para títulos de categorías en productos-vista */
+.categoria-titulo {
+    background: linear-gradient(135deg, #007bff 0%, #000080 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilo personalizado para botón "Ver Detalle" */
+.btn-detalle {
+    background: linear-gradient(135deg, #17a2b8 0%, #007bff 100%);
+    border: 2px solid #007bff;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-detalle:hover {
+    background: linear-gradient(135deg, #007bff 0%, #17a2b8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: white;
+}
+
+/* Estilo único para título principal "NUESTROS PRODUCTOS" */
+.titulo-principal {
+    background: linear-gradient(135deg, #000080 0%, #007bff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 2rem;
+    border-bottom: 4px solid #007bff;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* Estilo único para título del carrito "Lista de Compra" */
+.titulo-carrito {
+    background: linear-gradient(135deg, #007bff 0%, #000080 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+}

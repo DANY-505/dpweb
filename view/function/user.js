@@ -51,6 +51,7 @@ async function registrarUsuario() {
         });
         let json = await respuesta.json();
 
+<<<<<<< Updated upstream
         // verificar 'status', no solo 'msg'
         if (json.status === false) {
             Swal.fire({
@@ -95,17 +96,37 @@ async function registrarUsuario() {
             });
             document.getElementById('frm_user').reset();
         } else {
+=======
+        // CORRECTO: verificar 'status', no solo 'msg'
+        if (json.status === false) {
+>>>>>>> Stashed changes
             Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: json.msg
             });
+            document.getElementById('frm_user').reset();
+        } else if (json.status === true) {
+            Swal.fire({
+                icon: "success",
+                title: "Éxito",
+                text: json.msg
+            });
+            document.getElementById('frm_user').reset(); 
         }
     } catch (error) {
-        console.log("Error al registrar categoría: " + error);
+        console.log("Error al conectar con el servidor: " + error);
+        Swal.fire({
+            icon: "error",
+            title: "Error de conexión",
+            text: "No se pudo conectar con el servidor"
+        });
     }
 }
+<<<<<<< Updated upstream
 */
+=======
+>>>>>>> Stashed changes
 function cancelar() {
     Swal.fire({
         icon: "warning",

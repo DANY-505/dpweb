@@ -49,7 +49,7 @@ async function registrarCliente() {
             body: datos
         });
         let json = await respuesta.json();
-        if (json.msg) {
+        if (json.status === true) {
             Swal.fire({
                 icon: "success",
                 title: "Éxito",

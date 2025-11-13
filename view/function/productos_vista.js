@@ -21,7 +21,7 @@ async function cargarProductosTienda() {
             html += `
             <div class="row mt-5">
                 <div class="col-12">
-                    <h3 class="text-center mb-4 text-primary fw-bold">${categoria}</h3>
+                    <h3 class="categoria-titulo">${categoria}</h3>
                 </div>
             `;
 
@@ -29,15 +29,15 @@ async function cargarProductosTienda() {
                 const imagen = p.imagen ? base_url  + p.imagen : 'https://via.placeholder.com/300x200?text=Sin+Imagen';
 
                 html += `
-                <div class="col-md-3 col-sm-6 mb-4">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="card h-100 shadow-sm border-0">
                         <img src="${imagen}" class="card-img-top" alt="${p.nombre}" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fs-6">${p.nombre}</h5>
                             <p class="card-text text-muted small">Categoría: ${p.categoria}</p>
                             <p class="card-text text-success fw-bold">$${parseFloat(p.precio).toFixed(2)}</p>
-                            <div class="mt-auto d-flex gap-1">
-                                <a href="${base_url}producto-detalle/${p.id}" class="btn btn-outline-primary btn-sm flex-fill">Ver Detalle</a>
+                            <div class="mt-auto d-flex flex-column flex-sm-row gap-1">
+                                <a href="${base_url}producto-detalle/${p.id}" class="btn btn-detalle btn-sm flex-fill">Ver Detalle</a>
                                 <button onclick="agregarAlCarrito(${p.id})" class="btn btn-success btn-sm flex-fill">Añadir al Carrito</button>
                             </div>
                         </div>

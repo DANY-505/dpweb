@@ -106,6 +106,3 @@
             </li>
         </ul>
     </nav>
-
-    <!-- Main Content Wrapper -->
-    <div class="main-content">
