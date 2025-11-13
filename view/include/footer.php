@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </div> <!-- End of main-content -->
     
    <!--
@@ -7,6 +8,9 @@
             <p class="mb-0">&copy; <?php echo date('Y'); ?> Tienda de Productos - Todos los derechos reservados</p>
         </div>
     </footer> -->
+=======
+    
+>>>>>>> Stashed changes
 =======
     
 >>>>>>> Stashed changes

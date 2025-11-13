@@ -52,6 +52,7 @@ async function registrarUsuario() {
         let json = await respuesta.json();
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         // verificar 'status', no solo 'msg'
         if (json.status === false) {
             Swal.fire({
@@ -100,6 +101,10 @@ async function registrarUsuario() {
         // CORRECTO: verificar 'status', no solo 'msg'
         if (json.status === false) {
 >>>>>>> Stashed changes
+=======
+        // CORRECTO: verificar 'status', no solo 'msg'
+        if (json.status === false) {
+>>>>>>> Stashed changes
             Swal.fire({
                 icon: "error",
                 title: "Error",
@@ -124,7 +129,10 @@ async function registrarUsuario() {
     }
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 */
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 function cancelar() {
