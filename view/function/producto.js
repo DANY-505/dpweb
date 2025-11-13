@@ -47,11 +47,6 @@ async function registrarProducto() {
             cache: 'no-cache',
             body: datos
         });
-        
-        if (!respuesta.ok) {
-            throw new Error(`Error HTTP: ${respuesta.status}`);
-        }
-        
         let json = await respuesta.json();
         if (json.status) {
             Swal.fire({
@@ -68,12 +63,7 @@ async function registrarProducto() {
             });
         }
     } catch (error) {
-        console.error("Error al registrar producto:", error);
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Ocurrió un error al procesar la solicitud. Por favor, inténtelo de nuevo."
-        });
+        console.log("Error al registrar producto: " + error);
     }
 }
 
@@ -149,12 +139,7 @@ async function edit_producto() {
             cache: 'no-cache',
             body: datos
         });
-        
-        if (!respuesta.ok) {
-            throw new Error(`Error HTTP: ${respuesta.status}`);
-        }
-        
-        let json = await respuesta.json();
+        json = await respuesta.json();
         if (!json.status) {
             Swal.fire({
                 icon: "error",
@@ -177,30 +162,11 @@ async function edit_producto() {
             if (imagenActual) {
                 imagenActual.src = base_url + json.data.imagen;
                 imagenActual.style.display = 'block';
-                
-                // Agregar un contenedor para la imagen si no existe
-                if (!imagenActual.parentNode.classList.contains('image-container')) {
-                    const container = document.createElement('div');
-                    container.className = 'image-container mt-2';
-                    imagenActual.parentNode.insertBefore(container, imagenActual);
-                    container.appendChild(imagenActual);
-                    
-                    // Añadir texto indicativo
-                    const label = document.createElement('small');
-                    label.className = 'd-block text-muted mb-1';
-                    label.textContent = 'Imagen actual:';
-                    container.insertBefore(label, imagenActual);
-                }
             }
         }
 
     } catch (error) {
-        console.error('Error al cargar datos del producto:', error);
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No se pudieron cargar los datos del producto. Por favor, inténtelo de nuevo."
-        });
+        console.log('oops, ocurrio un error' + error);
     }
 }
 
@@ -213,41 +179,28 @@ if (document.querySelector("#frm_edit_producto")) {
 }
 
 async function actualizarProducto() {
-    try {
-        const frm_edit_producto = document.querySelector("#frm_edit_producto")
-        const datos = new FormData(frm_edit_producto);
-        let respuesta = await fetch(base_url + 'control/productosController.php?tipo=actualizar', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            body: datos
-        });
-        
-        if (!respuesta.ok) {
-            throw new Error(`Error HTTP: ${respuesta.status}`);
-        }
-        
-        let json = await respuesta.json();
-        if (!json.status) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: json.msg || "Ocurrió un error al actualizar el producto"
-            });
-            return;
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: json.msg
-            });
-        }
-    } catch (error) {
-        console.error("Error al actualizar producto:", error);
+    const frm_edit_producto = document.querySelector("#frm_edit_producto")
+    const datos = new FormData(frm_edit_producto);
+    let respuesta = await fetch(base_url + 'control/productosController.php?tipo=actualizar', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: datos
+    });
+    json = await respuesta.json();
+    if (!json.status) {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Ocurrió un error al procesar la solicitud. Por favor, inténtelo de nuevo."
+            text: "Ops, ocurrio un error al actualizar, contacte con el administrador",
+        });
+        console.log(json.msg);
+        return;
+    } else {
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: json.msg
         });
     }
 }

@@ -39,7 +39,6 @@ if (document.querySelector('#frm_user')) {
     }
 }
 
-
 async function registrarUsuario() {
     try {
         const datos = new FormData(frm_user);
@@ -51,9 +50,7 @@ async function registrarUsuario() {
         });
         let json = await respuesta.json();
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        // verificar 'status', no solo 'msg'
+        // CORRECTO: verificar 'status', no solo 'msg'
         if (json.status === false) {
             Swal.fire({
                 icon: "error",
@@ -78,63 +75,6 @@ async function registrarUsuario() {
         });
     }
 }
-
-/*async function registrarUsuario() {
-    try {
-        const datos = new FormData(frm_user);
-        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=registrar', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            body: datos
-        });
-        let json = await respuesta.json();
-        if (json.msg) {
-            Swal.fire({
-                icon: "success",
-                title: "Éxito",
-                text: json.msg
-            });
-            document.getElementById('frm_user').reset();
-        } else {
-=======
-        // CORRECTO: verificar 'status', no solo 'msg'
-        if (json.status === false) {
->>>>>>> Stashed changes
-=======
-        // CORRECTO: verificar 'status', no solo 'msg'
-        if (json.status === false) {
->>>>>>> Stashed changes
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: json.msg
-            });
-            document.getElementById('frm_user').reset();
-        } else if (json.status === true) {
-            Swal.fire({
-                icon: "success",
-                title: "Éxito",
-                text: json.msg
-            });
-            document.getElementById('frm_user').reset(); 
-        }
-    } catch (error) {
-        console.log("Error al conectar con el servidor: " + error);
-        Swal.fire({
-            icon: "error",
-            title: "Error de conexión",
-            text: "No se pudo conectar con el servidor"
-        });
-    }
-}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-*/
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 function cancelar() {
     Swal.fire({
         icon: "warning",
