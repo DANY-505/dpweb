@@ -75,20 +75,6 @@ async function registrarUsuario() {
         });
     }
 }
-function cancelar() {
-    Swal.fire({
-        icon: "warning",
-        title: "¿Estás seguro?",
-        text: "Se cancelará el registro",
-        showCancelButton: true,
-        confirmButtonText: "Sí, cancelar",
-        cancelButtonText: "No"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = base_url + "?view=new-user";
-        }
-    });
-}
 
 async function iniciar_sesion() {
     let usuario = document.getElementById("username").value;
@@ -134,37 +120,43 @@ async function view_users() {
             mode: 'cors',
             cache: 'no-cache'
         });
-        let json = await respuesta.json();
-        if (json && json.length > 0) {
-            let html = '';
-            json.forEach((user, index) => {
-                html += `<tr>
-                    <td>${index + 1}</td>
-                    <td>${user.nro_identidad || ''}</td>
-                    <td>${user.razon_social || ''}</td>
-                    <td>${user.correo || ''}</td> 
-                    <td>${user.rol || ''}</td> 
-                    <td>${user.estado || ''}</td>
-                    <td>
-                        <button onclick="window.location.href='`+ base_url + `edit-user/` + user.id + `'" class="btn btn-edit">Editar</button>
-                        <button onclick="eliminar(` + user.id + `)" class="btn btn-delete">Eliminar</button>
-                    </td>
-                </tr>`;
+        json = await respuesta.json();
+        contenidot = document.getElementById('content_users');
+        contenidot.innerHTML = ''; // Limpiar contenido existente
+        if (json.status) {
+            let cont = 1;
+            json.data.forEach(usuario => {
+                if (usuario.estado == 1) {
+                    estado = "activo";
+                } else {
+                    estado = "inactivo";
+                }
+                let nueva_fila = document.createElement("tr");
+                nueva_fila.id = "fila" + usuario.id;
+                nueva_fila.className = "filas_tabla";
+                nueva_fila.innerHTML = `
+                            <td>${cont}</td>
+                            <td>${usuario.nro_identidad}</td>
+                            <td>${usuario.razon_social}</td>
+                            <td>${usuario.correo}</td>
+                            <td>${usuario.rol}</td>
+                            <td>${estado}</td>
+                            <td>
+                                <button onclick="window.location.href='`+ base_url + `edit-user/` + usuario.id + `'" class="btn btn-edit">Editar</button>
+                                <button onclick="eliminar(` + usuario.id + `)" class="btn btn-delete">Eliminar</button>
+                            </td>
+                `;
+                cont++;
+                contenidot.appendChild(nueva_fila);
             });
-            document.getElementById('content_users').innerHTML = html;
-        } else {
-            document.getElementById('content_users').innerHTML = '<tr><td colspan="6">No hay usuarios disponibles</td></tr>';
         }
     } catch (error) {
-        console.log(error);
-        document.getElementById('content_users').innerHTML = '<tr><td colspan="6">Error al cargar los usuarios</td></tr>';
+        console.log('error en mostrar usuario ' + error);
     }
 }
-
 if (document.getElementById('content_users')) {
     view_users();
 }
-
 
 async function edit_user() {
     try {
@@ -214,7 +206,6 @@ if (document.querySelector('#frm_edit_user')) {
         validar_form("actualizar");
     };
 }
-
 async function actualizarUsuario() {
     const datos = new FormData(frm_edit_user);
     let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=actualizar', {
@@ -269,9 +260,7 @@ async function eliminar(id) {
                         title: "Eliminado",
                         text: json.msg
                     }); 
-                    then (() =>{
-                        view_users();
-                    });
+                    view_users();
 
                 } else {
                     Swal.fire({

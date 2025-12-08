@@ -76,7 +76,7 @@ if ($tipo == "mostrar_usuarios") {
     echo json_encode($respuesta);
 }
 
-/*
+
 if ($tipo == "obtener_usuario"){
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         echo json_encode(array('status' => false, 'msg' => 'Error, id no existe'));
@@ -91,7 +91,7 @@ if ($tipo == "obtener_usuario"){
         echo json_encode(array('status' => false, 'msg' => 'Error, usuario no encontrado'));
     }
 }
-*/
+
 
 if ($tipo == "ver"){
     $respuesta = array('status' => false, 'msg' => '');

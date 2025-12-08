@@ -67,62 +67,56 @@ async function registrarProducto() {
     }
 }
 
-function cancelar() {
-    Swal.fire({
-        icon: "warning",
-        title: "¿Estás seguro?",
-        text: "Se cancelará el registro",
-        showCancelButton: true,
-        confirmButtonText: "Sí, cancelar",
-        cancelButtonText: "No"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = base_url + "?view=new-producto";
-        }
-    });
-}
-
 async function view_producto() {
     try {
-    let respuesta = await fetch(base_url + 'control/productosController.php?tipo=mostrar_productos', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache'
-    });
-    if (!respuesta.ok) {
-            throw new Error(`HTTP error! status: ${respuesta.status}`);
-        }
-        
-        let json = await respuesta.json();
-        
-        if (json.status && json.data && json.data.length > 0) {
-        let html = '';
-        json.data.forEach((producto, index) => {
-            html += `<tr>
-                    <td>${index + 1}</td>
-                    <td>${producto.codigo || ''}</td>
-                    <td>${producto.nombre || ''}</td>
-                    <td>${producto.precio || ''}</td>
-                    <td>${producto.stock || ''}</td>
-                    <td>${producto.categoria || ''}</td>
-                    <td>${producto.proveedor || ''}</td>
-                    <td>${producto.fecha_vencimiento || ''}</td>
-                    <td>
-                        <button onclick="window.location.href='${base_url}productos-edit/${producto.id}'" class="btn btn-edit">Editar</button>
-                        <button onclick="eliminar(` + producto.id + `)" class="btn btn-delete">Eliminar</button>
-                    </td>
-                </tr>`;
+        let respuesta = await fetch(base_url + 'control/productosController.php?tipo=mostrar_productos', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache'
         });
-        document.getElementById('content_productos').innerHTML = html;
-    } else {
-        document.getElementById('content_productos').innerHTML = '<tr><td colspan="9">No hay productos disponibles</td></tr>';
-    }
-    }catch (error) {
-        console.error("Error al cargar productos:", error);
-        document.getElementById('content_productos').innerHTML = '<tr><td colspan="9">Error al cargar los productos</td></tr>';
+        json = await respuesta.json();
+        contenidot = document.getElementById('content_productos');
+        contenidot.innerHTML = '';
+        if (json.status) {
+            let cont = 1;
+            json.data.forEach(producto => {
+                let nueva_fila = document.createElement("tr");
+                nueva_fila.id = "fila" + producto.id;
+                nueva_fila.className = "filas_tabla";
+                nueva_fila.innerHTML = `
+                            <td>${cont}</td>
+                            <td>${producto.codigo}</td>
+                            <td>${producto.nombre}</td>
+                            <td>${producto.precio}</td>
+                            <td>${producto.stock}</td>
+                            <td>${producto.categoria}</td>
+                            <td>${producto.proveedor}</td>
+                            <td>${producto.fecha_vencimiento}</td>
+                            <td><svg id="barcode${producto.id}"></svg></td>
+                            <td>
+                                <button onclick="window.location.href='`+ base_url + `productos-edit/` + producto.id + `' " class="btn btn-edit">Editar</button>
+                                <button onclick="eliminar(` + producto.id + `)" class="btn btn-delete">Eliminar</button>
+                            </td>
+                `;
+                cont++;
+                contenidot.appendChild(nueva_fila);
+
+            });
+            json.data.forEach(producto => {
+                JsBarcode("#barcode" + producto.id, producto.codigo || "SIN-CODIGO", {
+                    format: "CODE128",
+                    lineColor: "#550fa5ff",
+                    width: 2,
+                    height: 40,
+                    displayValue: true,
+                    fontSize: 14
+                });
+            });
+        }
+    } catch (e) {
+        console.log('error en mostrar producto ' + e);
     }
 }
-
 if (document.getElementById('content_productos')) {
     view_producto();
 }
@@ -169,6 +163,7 @@ async function edit_producto() {
         console.log('oops, ocurrio un error' + error);
     }
 }
+
 
 if (document.querySelector("#frm_edit_producto")) {
     let frm_edit_producto = document.querySelector("#frm_edit_producto");
@@ -271,6 +266,7 @@ async function cargar_categorias() {
     document.getElementById("id_categoria").innerHTML = contenido;
 
 }
+
 
 async function cargar_proveedores() {
     let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=mostrar_proveedores', {

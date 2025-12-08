@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-center" style="color: #000080; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">LISTA DE CATEGORIAS</h1>
         <button class="btn btn-add-new" onclick="window.location.href='<?php echo BASE_URL; ?>new-categoria'">
             <i class="bi bi-plus"></i> Agregar Nuevo

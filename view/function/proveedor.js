@@ -68,23 +68,6 @@ async function registrarProveedor() {
     }
 }
 
-function cancelar() {
-    Swal.fire({
-        icon: "warning",
-        title: "¿Estás seguro?",
-        text: "Se cancelará el registro",
-        showCancelButton: true,
-        confirmButtonText: "Sí, cancelar",
-        cancelButtonText: "No"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = base_url + "?view=proveedor-new";
-        }
-    });
-}
-
-
-
 async function view_proveedores() {
     try {
         let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=mostrar_proveedores', {
@@ -122,7 +105,6 @@ async function view_proveedores() {
 if (document.getElementById('content_proveedor')) {
     view_proveedores();
 }
-
 
 async function edit_proveedor() {
     try {
@@ -173,6 +155,7 @@ if (document.querySelector('#frm_edit_user')) {
     };
 }
 
+
 async function actualizarProveedor() {
     const datos = new FormData(frm_edit_user);
     let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=actualizar', {
@@ -198,6 +181,7 @@ async function actualizarProveedor() {
         });
     }
 }
+
 
 async function eliminar(id) {
     Swal.fire({

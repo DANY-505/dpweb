@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-10 mt-md-10">
         <h1 class="text-center" style="color: #000080; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">LISTA DE PRODUCTOS</h1>
         <button class="btn btn-add-new" onclick="window.location.href='<?php echo BASE_URL; ?>new-producto'">
             <i class="bi bi-plus"></i> Agregar Nuevo
@@ -16,6 +16,7 @@
                 <th>Categoria</th>
                 <th>Proveedor</th>
                 <th>Fecha Vencimiento</th>
+                <th>Codigo Barra</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -27,3 +28,4 @@
 </div>
 
 <script src="<?php echo BASE_URL; ?>view/function/producto.js"></script>
+<script src="<?php echo BASE_URL; ?>view/function/JsBarcode.all.min.js"></script>

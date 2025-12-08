@@ -68,22 +68,6 @@ async function registrarCliente() {
     }
 }
 
-function cancelar() {
-    Swal.fire({
-        icon: "warning",
-        title: "¿Estás seguro?",
-        text: "Se cancelará el registro",
-        showCancelButton: true,
-        confirmButtonText: "Sí, cancelar",
-        cancelButtonText: "No"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = base_url + "?view=new-user";
-        }
-    });
-}
-
-
 
 async function view_clients() {
     try {
@@ -122,6 +106,7 @@ async function view_clients() {
 if (document.getElementById('content_clients')) {
     view_clients();
 }
+
 
 
 async function edit_clients() {
@@ -198,6 +183,7 @@ async function actualizarCliente() {
         });
     }
 }
+
 
 async function eliminar(id) {
     Swal.fire({
