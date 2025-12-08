@@ -29,7 +29,6 @@ if(document.querySelector('#frm_categorie')){
         validar_form("nuevo");
     }
 }
-
 async function registrarCategoria() {
     try {
         const frm_categorie = document.querySelector("#frm_categorie");
@@ -60,20 +59,6 @@ async function registrarCategoria() {
     }
 }
 
-function cancelar() {
-    Swal.fire({
-        icon: "warning",
-        title: "¿Estás seguro?",
-        text: "Se cancelará el registro",
-        showCancelButton: true,
-        confirmButtonText: "Sí, cancelar",
-        cancelButtonText: "No"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = base_url + "?view=new-categoria";
-        }
-    });
-}
 
 async function view_categoria() {
     try {
@@ -109,6 +94,7 @@ async function view_categoria() {
 if (document.getElementById('content_categorias')) {
     view_categoria();
 }
+
 
 async function edit_categoria() {
     try {

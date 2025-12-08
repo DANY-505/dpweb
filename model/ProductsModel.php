@@ -8,6 +8,7 @@ class ProductsModel
         $this->conexion = new Conexion();
         $this->conexion = $this->conexion->connect();
     }
+
     public function registrar($codigo, $nombre, $detalle, $precio, $stock, $id_categoria, $fecha_vencimiento, $imagen, $id_proveedor)
     {
         // Escapar todos los campos para prevenir inyección SQL
@@ -78,6 +79,17 @@ class ProductsModel
         $consulta .= " WHERE id='$id_producto'";
         $sql = $this->conexion->query($consulta);
         return $sql;
+    }
+
+    public function buscarProductoNombreOrCodigo($dato)
+    {
+        $arr_productos = array();
+        $consulta = "SELECT * FROM producto WHERE codigo LIKE '$dato%' OR nombre LIKE '%$dato%' OR detalle LIKE '%$dato%'";
+        $sql = $this->conexion->query($consulta);
+        while ($objeto = $sql->fetch_object()) {
+            array_push($arr_productos, $objeto);
+        }
+        return $arr_productos;
     }
 
     public function eliminar($id_producto)

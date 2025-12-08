@@ -35,7 +35,7 @@
         <div class="navbar-brand">LOGO</div>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="new-user">
+                <a class="nav-link" href="<?= BASE_URL ?>home">
                     <i class="bi bi-house"></i>
                     Home
                 </a>

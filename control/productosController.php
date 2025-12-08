@@ -9,7 +9,7 @@ $objCategoria = new CategoriaModel();
 $objPersona = new UsuarioModel();
 $tipo = $_GET['tipo'];
 
-if ($tipo == 'registrar') {
+if ($tipo === 'registrar') {
     // Captura los campos del formulario
     $codigo = $_POST['codigo'] ?? '';
     $nombre = $_POST['nombre'] ?? '';
@@ -77,59 +77,16 @@ if ($tipo == "mostrar_productos") {
     if (count($productos)) {
         foreach ($productos as $producto) {
             $categoria = $objCategoria->ver($producto->id_categoria);
-            if ($categoria && property_exists($categoria, 'nombre')) {
-                $producto->categoria = $categoria->nombre;
-            } else {
-                $producto->categoria = "Sin categoria";
-            }
+            $producto->categoria = $categoria ? $categoria->nombre : "Sin categoría";
 
             $proveedor = $objPersona->ver($producto->id_proveedor);
-            if ($proveedor && property_exists($proveedor, 'razon_social')) {
-                $producto->proveedor = $proveedor->razon_social;
-            } else {
-                $producto->proveedor = "Sin proveedor";
-            }
+            $producto->proveedor = $proveedor ? $proveedor->razon_social : "Sin proveedor";
+            
             array_push($arrProduct, $producto);
         }
         $respuesta = array('status' => true, 'msg' => '', 'data' => $arrProduct);
     }
-    header('Content-Type: application/json');
     echo json_encode($respuesta);
-    exit;
-}
-
-
-if ($tipo == "mostrar_productos_vista") {
-    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
-    $productos = $objProducto->mostrarProductos();
-    $categoriasMap = array(); // Agrupar por categoría
-
-    if (count($productos)) {
-        foreach ($productos as $producto) {
-            $categoria = $objCategoria->ver($producto->id_categoria);
-            $nombreCategoria = $categoria && property_exists($categoria, 'nombre') ? $categoria->nombre : "Sin categoría";
-
-            $proveedor = $objPersona->ver($producto->id_proveedor);
-            $nombreProveedor = $proveedor && property_exists($proveedor, 'razon_social') ? $proveedor->razon_social : "Sin proveedor";
-
-            $producto->categoria = $nombreCategoria;
-            $producto->proveedor = $nombreProveedor;
-
-            // Agrupar
-            if (!isset($categoriasMap[$nombreCategoria])) {
-                $categoriasMap[$nombreCategoria] = [];
-            }
-            $categoriasMap[$nombreCategoria][] = $producto;
-        }
-
-        $respuesta = array('status' => true, 'msg' => '', 'data' => $categoriasMap);
-    } else {
-        $respuesta = array('status' => true, 'msg' => 'No hay productos', 'data' => []);
-    }
-
-    header('Content-Type: application/json');
-    echo json_encode($respuesta);
-    exit;
 }
 
 if ($tipo == "ver") {
@@ -172,7 +129,6 @@ if ($tipo == "actualizar") {
                 $imagen = $producto->imagen;
             } else {
                 //echo "SE ENVIO LA IMAGEN";
-                //subir imagen en la carpeta en la carpeta uploat, obtener laruta de ese archivo y esa ruta almacenar en una variable imagen y enviar a la base de datos
                 $file = $_FILES['imagen'];
                 $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
                 $extPermitidas = ['jpg', 'jpeg', 'png'];
@@ -218,6 +174,22 @@ if ($tipo == "actualizar") {
             exit;
         }
     }
+}
+
+if ($tipo == "buscar_producto_venta") {
+    $dato = $_POST['dato'];
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    $productos = $objProducto->buscarProductoNombreOrCodigo($dato);
+    $arrProduct = array();
+    if (count($productos)) {
+        foreach ($productos as $producto) {
+            $categoria = $objCategoria->ver($producto->id_categoria);
+            $producto->categoria = $categoria->nombre;
+            array_push($arrProduct, $producto);
+        }
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $arrProduct);
+    }
+    echo json_encode($respuesta);
 }
 
 if ($tipo == "eliminar") {

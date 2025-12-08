@@ -68,11 +68,15 @@ if($tipo == "iniciar_sesion"){
 
 
 if ($tipo == "mostrar_usuarios") {
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $usuarios = $objPersona->mostrarUsuarios();
-    header('Content-Type: application/json');
-    echo json_encode($usuarios);
+    if (count($usuarios)) {
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $usuarios);
+    }
+    echo json_encode($respuesta);
 }
 
+/*
 if ($tipo == "obtener_usuario"){
     if (!isset($_POST['id']) || empty($_POST['id'])) {
         echo json_encode(array('status' => false, 'msg' => 'Error, id no existe'));
@@ -87,7 +91,7 @@ if ($tipo == "obtener_usuario"){
         echo json_encode(array('status' => false, 'msg' => 'Error, usuario no encontrado'));
     }
 }
-
+*/
 
 if ($tipo == "ver"){
     $respuesta = array('status' => false, 'msg' => '');

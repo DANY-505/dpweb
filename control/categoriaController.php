@@ -29,6 +29,7 @@ if ($tipo == "registrar") {
     echo json_encode($arrResponse);
 }
 
+
 if ($tipo == "mostrar_categorias") {
    $categorias = $objCategoria->mostrarCategorias();
    $respuesta = array();
@@ -53,6 +54,7 @@ if ($tipo == "ver") {
     }
     echo json_encode($respuesta);
 }
+
 
 if ($tipo == "obtener_categoria") {
     header('Content-Type: application/json');
