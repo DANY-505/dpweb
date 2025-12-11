@@ -49,6 +49,7 @@ async function agregar_producto_temporal() {
 
     }
 }
+ 
 
 // Al hacer clic en "Agregar al carrito"
 async function agregar_producto_venta(id_producto) {
@@ -108,7 +109,7 @@ async function agregar_producto_temporal() {
 
         cargarCarrito(); // recargamos
     } catch (error) {
-        console.error("Error en agregar_producto_temporal:", error);
+        console.error("Error en agregar producto temporales ", error);
     }
 }
 
@@ -162,6 +163,36 @@ async function cambiarCant(id_producto, accion) {
         body: datos
     });
     cargarCarrito();
+}
+
+async function actualizar_subtotal(id, precio) {
+    let cantidad = document.getElementById('cant' + id).value;
+    try {
+        const datos = new FormData();
+        datos.append('id', id);
+        datos.append('cantidad', cantidad);
+
+        let respuesta = await fetch(base_url + 'control/ventaController.php?tipo=actualizarCantidad',{
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (json.status) {
+            subtotal = precio * cantidad;
+            document.getElementById('subtotal' + id).innerHTML = 'S/ ' + subtotal;
+        }
+        
+    } catch (error) {
+        console.error("Error al actualizar el subtotal: ", error);
+        
+    }
+
+}
+
+async function actualizar_general() {
+    
 }
 
 async function eliminarItem(id_temporal) {

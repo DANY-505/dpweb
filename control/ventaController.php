@@ -29,10 +29,10 @@ if ($tipo == "registrarTemporal") {
 if ($tipo == "listarTemporales") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
     $temporales = $objVenta->buscarTemporales();
-    if (count($temporales) > 0) {
+    if ($temporales) {
         $respuesta = array('status' => true, 'msg' => '', 'data' => $temporales);
     } else {
-        $respuesta = array('status' => true, 'msg' => '', 'data' => array());
+        $respuesta = array('status' => false, 'msg' => 'no se encontraron productos');
     }
     echo json_encode($respuesta);
     exit;
