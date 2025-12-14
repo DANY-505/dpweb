@@ -26,45 +26,28 @@ if ($tipo == "registrarTemporal") {
     echo json_encode($respuesta);
 }
 
-if ($tipo == "listarTemporales") {
+if ($tipo =="listarVentaTemporales") {
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
-    $temporales = $objVenta->buscarTemporales();
-    if ($temporales) {
-        $respuesta = array('status' => true, 'msg' => '', 'data' => $temporales);
+    $b_producto = $objVenta->buscarTemporales();
+    if ($b_producto) {
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $b_producto);
     } else {
-        $respuesta = array('status' => false, 'msg' => 'no se encontraron productos');
+        $respuesta = array('status' => true, 'msg' => 'no se encontraron productos', 'data' => array());
     }
     echo json_encode($respuesta);
-    exit;
 }
 
-if ($tipo == "cambiarCantidad") {
+if($tipo=="actualizarCantidad"){
+    $id = $_POST['id'];
+    $cantidad = $_POST['cantidad'];
     $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
-    $id_producto = $_POST['id_producto'];
-    $accion = $_POST['accion'];
-
-    $item = $objVenta->buscarTemporal($id_producto);
-
-    if ($item) {
-        if ($accion == "aumentar") {
-            $nueva_cantidad = $item->cantidad + 1;
-        } else {
-            $nueva_cantidad = $item->cantidad - 1;
-            if ($nueva_cantidad < 1) {
-                // NO eliminamos, solo dejamos en 1
-                $nueva_cantidad = 1;
-                $respuesta = array('status' => true, 'msg' => 'cantidad minima alcanzada');
-                echo json_encode($respuesta);
-                exit;
-            }
-        }
-        $objVenta->actualizarCantidadTemporal($id_producto, $nueva_cantidad);
-        $respuesta = array('status' => true, 'msg' => 'cantidad actualizada');
-    } else {
-        $respuesta = array('status' => false, 'msg' => 'producto no encontrado en temporal');
+    $consulta = $objVenta->actualizarCantidadTemporalByid($id, $cantidad);
+    if($consulta){
+        $respuesta = array('status' => true, 'msg' => 'success');
+    }else{
+        $respuesta = array('status' => false, 'msg' => 'error');
     }
     echo json_encode($respuesta);
-    exit;
 }
 
 if ($tipo == "eliminarDelCarrito") {
@@ -78,5 +61,5 @@ if ($tipo == "eliminarDelCarrito") {
         $respuesta = array('status' => false, 'msg' => 'Error al eliminar');
     }
     echo json_encode($respuesta);
-    exit;
 }
+

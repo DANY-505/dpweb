@@ -21,7 +21,6 @@
   </div>
 
   <div class="row g-4">
-    <!-- PRODUCTOS - Ahora ocupan más espacio y se ven hermosos -->
     <div class="col-xl-8 col-lg-8 col-md-12">
       <div class="card shadow-lg border-0 h-100">
         <div class="card-body p-4">
@@ -47,8 +46,8 @@
                 <tr>
                   <th>Producto</th>
                   <th>Cant.</th>
-                  <th>Precio</th>
-                  <th>SubT.</th>
+                  <th>P. Unit</th>
+                  <th>SubTotal</th>
                   <th></th>
                 </tr>
               </thead>
@@ -56,27 +55,19 @@
                 <!-- Productos del carrito aquí -->
               </tbody>
             </table>
-            <!-- Mensaje cuando está vacío -->
-            <div id="carrito_vacio" class="text-center py-5 text-muted d-none">
-              <i class="bi bi-cart3" style="font-size: 3rem;"></i>
-              <p class="mt-3 mb-0">El carrito está vacío</p>
-            </div>
           </div>
 
           <!-- Totales siempre fijos abajo -->
           <div class="border-top bg-light p-3 mt-auto">
             <div class="d-flex justify-content-between mb-2">
-              <strong>Subtotal:</strong>
-              <span id="subtotal_total">S/ 0.00</span>
+              <h5>Subtotal:<label id="subtotal_general"></label></h5>
             </div>
             <div class="d-flex justify-content-between mb-2">
-              <strong>IGV (18%):</strong>
-              <span id="igv_total">S/ 0.00</span>
+              <h5>IGV (18%):<label id="igv_general"></label></h5>
             </div>
             <hr class="my-2">
             <div class="d-flex justify-content-between mb-3">
-              <h4 class="mb-0">Total:</h4>
-              <h4 class="mb-0 text-primary fw-bold" id="total_final">S/ 0.00</h4>
+              <h5 class="mb-0">Total:<label class="mb-0 text-primary fw-bold" id="total"></label></h5>
             </div>
             <button class="btn btn-success btn-lg w-100 shadow" id="btn_realizar_venta">
               <i class="bi bi-credit-card"></i> Realizar Venta
@@ -89,7 +80,6 @@
 </div>
 
 <script src="<?php echo BASE_URL; ?>view/function/productos_vista.js"></script>
-<script src="<?php echo BASE_URL; ?>view/function/producto.js"></script>
 <script src="<?php echo BASE_URL; ?>view/function/venta.js"></script>
 <script>
   let input = document.getElementById("busqueda_venta");
@@ -98,9 +88,7 @@
       agregar_producto_temporal();
     }
   });
+  cargarCarrito();
+  actualizar_subtotal_general();
 
-  window.onload = function() {
-    cargarProductosTienda();
-    cargarCarrito();
-  };
 </script>
