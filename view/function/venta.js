@@ -16,7 +16,7 @@ productos_venta[id] = producto;
 productos_venta[id2] = producto2;
 console.log(productos_venta);
 
-async function agregar_producto_temporal(id_product = 0, price = 0, cantidad = 0) {
+async function agregar_producto_temporal(id_product = 0, price = 0, cantidad = 1) {
     if (id_product == 0) {
         id = document.getElementById("id_producto_venta").value;
     }else{
