@@ -16,10 +16,22 @@ productos_venta[id] = producto;
 productos_venta[id2] = producto2;
 console.log(productos_venta);
 
-async function agregar_producto_temporal() {
-    let id = document.getElementById("id_producto_venta").value;
-    let precio = document.getElementById("producto_precio_venta").value;
-    let cantidad = document.getElementById("producto_cantidad_venta").value;
+async function agregar_producto_temporal(id_product = 0, price = 0, cantidad = 0) {
+    if (id_product == 0) {
+        id = document.getElementById("id_producto_venta").value;
+    }else{
+        id =  id_product;
+    }
+    if(price == 0){
+        precio = document.getElementById("producto_precio_venta").value;
+    }else{
+        precio = price;
+    }
+    if(cantidad == 0){
+        cantidad = document.getElementById("producto_cantidad_venta").value;
+    }else{
+        cantidad = cant;
+    }
     const datos = new FormData();
     datos.append('id_producto', id);
     datos.append('precio', precio);
@@ -154,5 +166,62 @@ async function eliminarTemporalLista(id_temporal) {
         console.log("error al eliminar temporal " + error);
     }
     cargarCarrito();
+}
+
+async function buscar_cliente_venta() {
+    let dni = document.getElementById('cliente_dni').value;
+    try {
+        const datos = new FormData();
+        datos.append('dni', dni);
+        let respuesta = await fetch(base_url + 'control/usuarioController.php?tipo=buscarPorDni', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (json.status) {
+            document.getElementById('cliente_nombre').value = json.data.razon_social;
+            document.getElementById('id_cliente_venta').value = json.data.id;
+            
+        } else {
+            alert(json.msg);
+        }
+    } catch (error) {
+        console.log("error al bauscar cliente" + error);
+    }
+    
+}
+async function registrar_venta() {
+    let id_cliente = document.getElementById('id_cliente_venta').value;
+    let fecha_venta = document.getElementById('fecha_venta').value;
+    if(id_cliente == '' || fecha_venta == ''){
+        alert("debe ingresar todos los campos");
+        return;
+    }
+
+    try {
+        const datos = new FormData();
+        datos.append('id_cliente', id_cliente);
+        datos.append('fecha_venta', fecha_venta);
+
+        let respuesta = await fetch(base_url + 'control/ventaController.php?tipo=registrar_venta', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: datos
+        });
+        json = await respuesta.json();
+        if (json.status) {
+            alert("venta registrada con exito");
+            window.location.reload();
+            
+        } else {
+            alert(json.msg);
+        }
+    } catch (error) {
+        console.log("error al registrar venta " + error);
+    }
+    
 }
 

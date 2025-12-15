@@ -63,3 +63,34 @@ if ($tipo == "eliminarDelCarrito") {
     echo json_encode($respuesta);
 }
 
+if ($tipo == "registrar_venta") {
+    session_start();
+    $id_cliente = $_POST['id_cliente'];
+    $fecha_venta = $_POST['fecha_venta'];
+    $id_vendedor = $_SESSION['ventas_id'];
+    $ultima_venta = $objVenta->buscarUltimaVenta();
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+
+    if ($ultima_venta) {
+        $correlativo = $ultima_venta->id_venta + 1;
+    }else{
+        $correlativo = 1;
+    }
+    
+    $venta = $objVenta->registrar_venta($correlativo, $fecha_venta, $id_cliente, $id_vendedor);
+    if ($venta) {
+        $temporales = $objVenta->buscarTemporales();
+        foreach ($temporales as $temporal) {
+            $objVenta->registrar_venta_detalle($venta, $temporal->id_producto, $temporal->precio, $temporal->cantidad);
+        }
+        $objVenta->eliminarTemporales();
+        $respuesta = array('status' => true, 'msg' => 'Venta registrada');
+    } else {
+        $respuesta = array('status' => false, 'msg' => 'Error al registrar la venta');
+    }
+    echo json_encode($respuesta);
+
+}
+     
+
+

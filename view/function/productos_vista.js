@@ -46,7 +46,7 @@ async function cargarProductosTienda() {
                                         class="btn btn-warning btn-md text-white fw-bold shadow-sm">
                                     Ver detalles
                                 </button>
-                                <button onclick="agregar_producto_venta(${producto.id})"
+                                <button onclick="agregar_producto_venta(${producto.id}, ${producto.precio}), "
                                         class="btn btn-primary btn-md fw-bold shadow">
                                     Agregar al carrito
                                 </button>

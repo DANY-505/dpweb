@@ -181,3 +181,15 @@ if ($tipo == "mostrar_proveedores") {
     header('Content-Type: application/json');
     echo json_encode($respuesta);
 }
+
+if($tipo =="buscarPorDni"){
+    $dni= $_POST['dni'];
+    $respuesta = array('status' => false, 'msg' => 'fallo el controlador');
+    $usuarios = $objPersona->buscarPersonaPorNroIdentidad($dni);
+    if($usuarios){
+        $respuesta = array('status' => true, 'msg' => '', 'data' => $usuarios);
+    }else{
+        $respuesta = array('status' => true, 'msg' => 'no se encontraron datos');
+    }
+    echo json_encode($respuesta);
+}
