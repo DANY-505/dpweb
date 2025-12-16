@@ -42,11 +42,8 @@ async function cargarProductosTienda() {
                             <p class="text-success fw-bold fs-3 mb-2">S/ ${parseFloat(producto.precio).toFixed(2)}</p>
                             <p class="text-muted small mb-4">Stock: <strong>${producto.stock}</strong></p>
                             <div class="d-grid gap-2">
-                                <button onclick="verDetalleProducto(${producto.id})"
-                                        class="btn btn-warning btn-md text-white fw-bold shadow-sm">
-                                    Ver detalles
-                                </button>
-                                <button onclick="agregar_producto_venta(${producto.id}, ${producto.precio}), "
+
+                                <button onclick="agregar_producto_temporal(${producto.id}, ${producto.precio})"
                                         class="btn btn-primary btn-md fw-bold shadow">
                                     Agregar al carrito
                                 </button>

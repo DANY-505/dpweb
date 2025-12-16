@@ -30,7 +30,7 @@ async function agregar_producto_temporal(id_product = 0, price = 0, cantidad = 1
     if(cantidad == 0){
         cantidad = document.getElementById("producto_cantidad_venta").value;
     }else{
-        cantidad = cant;
+        cantidad = cantidad;
     }
     const datos = new FormData();
     datos.append('id_producto', id);
@@ -158,9 +158,10 @@ async function eliminarTemporalLista(id_temporal) {
         });
         let json = await respuesta.json();
         if (json.status) {
-            console.log(json.msg);
+            alert(json.msg);
+            cargarCarrito();
         }else{
-            console.error(json.msg);
+            alert(json.msg);
         }
     }catch (error) {
         console.log("error al eliminar temporal " + error);
